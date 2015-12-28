@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "CommandQueuedEvent";
+    Layout = "~/Views/Shared/_Documentation.cshtml";
+}
+
+<h2>CommandQueuedEvent</h2>
+<ul class="nav nav-pills">
+    <li><a href="#description">Description</a> </li>
+    <li><a href="#request">Event Schema</a></li>
+    <li><a href="#example">Example</a></li>
+</ul>
+
+<!-- Description -->
+<h3 id="description">Description</h3>
+<p>
+    CommandQueuedEvent signals when any user of your application has queued a command.
+    CommandQueuedEvent is useful for keeping multiple components of your application in sync with each other for command information.
+</p>
+
+<!-- Event Schema -->
+<h3 id="request">Event Schema</h3>
+<div class="pull-left">
+    <span class="label label-info">Heads up!</span> Click the image to zoom!
+</div>
+<div class="pull-right">
+    <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+</div>
+
+<div class="tab-img">
+    <img src="images/CommandQueuedEvent.png" alt="">
+</div>
+
+<!-- Example -->
+<h3 id="example">Example</h3>
+<p>Published CommandQueuedEvent <a href="/GetConfigValuesCommand">GetConfigValuesCommand</a></p>
+<pre>
+    &lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.5/CommandQueuedEvent"&gt;
+        &lt;Header EventId="d58ab84f-36e7-497f-b097-66f615b633cd" EventTime="2012-10-05T19:25:41Z"
+         LogicalDeviceId="MyLogicalDeviceId" /&gt;
+        &lt;CommandQueuedEvent CommandId="fc0619bd-5faa-465e-bf6d-afdae1ba1ea6"
+         CommandName="GetConfigValuesCommand" UserName="MyUserName"&gt;
+            &lt;ParameterList&gt;
+                &lt;Parameter Name="Parameter0" Value="aggregateeventscancount" /&gt;
+                &lt;Parameter Name="Parameter1" Value="aggregateeventscantime" /&gt;
+                &lt;Parameter Name="Parameter2" Value="commandpollinterval" /&gt;
+                &lt;Parameter Name="Parameter3" Value="dns" /&gt;
+                &lt;Parameter Name="Parameter4" Value="gateway" /&gt;
+                &lt;Parameter Name="Parameter5" Value="ip" /&gt;
+                &lt;Parameter Name="Parameter6" Value="solsticedeviceurl" /&gt;
+                &lt;Parameter Name="Parameter7" Value="logentrylevel" /&gt;
+                &lt;Parameter Name="Parameter8" Value="objecteventscancount" /&gt;
+                &lt;Parameter Name="Parameter9" Value="objecteventscantime" /&gt;
+                &lt;Parameter Name="Parameter10" Value="subnet" /&gt;
+                &lt;Parameter Name="Parameter11" Value="antenna1rxsensitivity" /&gt;
+                &lt;Parameter Name="Parameter12" Value="antenna1txpower" /&gt;
+                &lt;Parameter Name="Parameter13" Value="antenna2rxsensitivity" /&gt;
+                &lt;Parameter Name="Parameter14" Value="antenna2txpower" /&gt;
+                &lt;Parameter Name="Parameter15" Value="antenna3rxsensitivity" /&gt;
+                &lt;Parameter Name="Parameter16" Value="antenna3txpower" /&gt;
+                &lt;Parameter Name="Parameter17" Value="antenna4rxsensitivity" /&gt;
+                &lt;Parameter Name="Parameter18" Value="antenna4txpower" /&gt;
+                &lt;Parameter Name="Parameter19" Value="dooropentimelimit" /&gt;
+                &lt;Parameter Name="Parameter20" Value="lockdownhightemp" /&gt;
+                &lt;Parameter Name="Parameter21" Value="lockdownonacpowerfailure" /&gt;
+                &lt;Parameter Name="Parameter22" Value="lockdownonreaderfailure" /&gt;
+                &lt;Parameter Name="Parameter23" Value="lockdownonhightemp" /&gt;
+                &lt;Parameter Name="Parameter24" Value="logentryeventhightemp" /&gt;
+                &lt;Parameter Name="Parameter25" Value="logentryeventlowtemp" /&gt;
+                &lt;Parameter Name="Parameter26" Value="numberofantennas" /&gt;
+            &lt;/ParameterList&gt;
+        &lt;/CommandQueuedEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+<p>Published CommandQueuedEvent <a href="/GetEPCListCommand">GetEPCListCommand</a></p>
+<pre>
+    &lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.5/CommandQueuedEvent"&gt;
+        &lt;Header EventId="97d52fd6-bd53-4388-948a-307b5f4ccbfe" EventTime="2012-10-05T19:25:48Z"
+         LogicalDeviceId="MyLogicalDeviceId" /&gt;
+        &lt;CommandQueuedEvent CommandId="3f627543-4028-4047-a82a-576018b50030"
+         CommandName="GetEPCListCommand" UserName="MyUserName"&gt;
+            &lt;ParameterList /&gt;
+        &lt;/CommandQueuedEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+<p>Published CommandQueuedEvent <a href="/ResetCommand">ResetCommand</a></p>
+<pre>
+    &lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.5/CommandQueuedEvent"&gt;
+        &lt;Header EventId="aef2368f-1d66-4ab3-8a7e-8f26f1104e83" EventTime="2012-10-05T19:19:45Z"
+         LogicalDeviceId="MyLogicalDeviceId" /&gt;
+        &lt;CommandQueuedEvent CommandId="8355b632-f0fa-4837-beca-4455c7c322a8" 
+         CommandName="ResetCommand" UserName="MyUserName"&gt;
+            &lt;ParameterList /&gt;
+        &lt;/CommandQueuedEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+<p>Published CommandQueuedEvent <a href="/SetConfigValuesCommand">SetConfigValuesCommand</a></p>
+<pre>
+    &lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.5/CommandQueuedEvent"&gt;
+        &lt;Header EventId="0e4c3569-f16a-4d6b-9e6e-9186459a0046" EventTime="2012-10-05T19:50:51Z"
+         LogicalDeviceId="MyLogicalDeviceId" /&gt;
+        &lt;CommandQueuedEvent CommandId="248dd84e-d208-4647-96d3-215fbd12fb68"
+         CommandName="SetConfigValuesCommand" UserName="MyUserName"&gt;
+            &lt;ParameterList&gt;
+                &lt;Parameter Name="aggregateeventscancount" Value="2" /&gt;
+                &lt;Parameter Name="aggregateeventscantime" Value="30" /&gt;
+                &lt;Parameter Name="commandpollinterval" Value="1" /&gt;
+                &lt;Parameter Name="dns" Value="10.6.10.1" /&gt;
+                &lt;Parameter Name="gateway" Value="10.6.10.2" /&gt;
+                &lt;Parameter Name="ip" Value="10.6.10.83" /&gt;
+                &lt;Parameter Name="subnet" Value="255.255.255.0" /&gt;
+            &lt;/ParameterList&gt;
+        &lt;/CommandQueuedEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+

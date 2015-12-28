@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolsticeDataServices.DAL", "SolsticeDataServices.DAL\SolsticeDataServices.DAL.csproj", "{B51ADDB9-747C-4B68-B9B8-7AC64E3810D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolsticeDataServices.TestTool", "SolsticeDataServices.TestTool\SolsticeDataServices.TestTool.csproj", "{C05C2402-B91F-4031-8647-31CE6D9FF6DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAccessLayer", "{01DCDFB5-E128-405C-BF59-A60ECC0F2A46}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User Interface", "User Interface", "{5DEC729D-EC17-4474-984E-E092A4873421}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web Services", "Web Services", "{9C9EB665-4E32-408B-A174-5125566CBE04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Client", "Test Client", "{B813E42C-5DB1-4D28-8F61-44771AB9F8DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolsticeDataServices.UserInterface", "SolsticeDataServices.UserInterface\SolsticeDataServices.UserInterface.csproj", "{F315FC79-3A69-402F-821F-3D6B9A7AE433}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{1A432430-E093-45E2-8641-FE2602BB48E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolsticeDataServices.Security", "SolsticeDataServices.Security\SolsticeDataServices.Security.csproj", "{87483483-48D5-4DCA-9BAF-7E41CAC43307}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataService.API", "DataService.API\DataService.API.csproj", "{120791C0-B1D4-42F4-872C-B0E462A256B9}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://intonline.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SolsticeDataServices.DAL\\SolsticeDataServices.DAL.csproj
+		SccProjectTopLevelParentUniqueName1 = SolsticeDataServices.sln
+		SccProjectName1 = SolsticeDataServices.DAL
+		SccLocalPath1 = SolsticeDataServices.DAL
+		SccProjectUniqueName2 = SolsticeDataServices.TestTool\\SolsticeDataServices.TestTool.csproj
+		SccProjectTopLevelParentUniqueName2 = SolsticeDataServices.sln
+		SccProjectName2 = SolsticeDataServices.TestTool
+		SccLocalPath2 = SolsticeDataServices.TestTool
+		SccProjectUniqueName3 = SolsticeDataServices.UserInterface\\SolsticeDataServices.UserInterface.csproj
+		SccProjectTopLevelParentUniqueName3 = SolsticeDataServices.sln
+		SccProjectName3 = SolsticeDataServices.UserInterface
+		SccLocalPath3 = SolsticeDataServices.UserInterface
+		SccProjectUniqueName4 = SolsticeDataServices.Security\\SolsticeDataServices.Security.csproj
+		SccProjectTopLevelParentUniqueName4 = SolsticeDataServices.sln
+		SccProjectName4 = SolsticeDataServices.Security
+		SccLocalPath4 = SolsticeDataServices.Security
+		SccProjectUniqueName5 = DataService.API\\DataService.API.csproj
+		SccProjectTopLevelParentUniqueName5 = SolsticeDataServices.sln
+		SccProjectName5 = DataService.API
+		SccLocalPath5 = DataService.API
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B51ADDB9-747C-4B68-B9B8-7AC64E3810D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B51ADDB9-747C-4B68-B9B8-7AC64E3810D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B51ADDB9-747C-4B68-B9B8-7AC64E3810D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B51ADDB9-747C-4B68-B9B8-7AC64E3810D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C05C2402-B91F-4031-8647-31CE6D9FF6DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C05C2402-B91F-4031-8647-31CE6D9FF6DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C05C2402-B91F-4031-8647-31CE6D9FF6DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C05C2402-B91F-4031-8647-31CE6D9FF6DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F315FC79-3A69-402F-821F-3D6B9A7AE433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F315FC79-3A69-402F-821F-3D6B9A7AE433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F315FC79-3A69-402F-821F-3D6B9A7AE433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F315FC79-3A69-402F-821F-3D6B9A7AE433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87483483-48D5-4DCA-9BAF-7E41CAC43307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87483483-48D5-4DCA-9BAF-7E41CAC43307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87483483-48D5-4DCA-9BAF-7E41CAC43307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87483483-48D5-4DCA-9BAF-7E41CAC43307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{120791C0-B1D4-42F4-872C-B0E462A256B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{120791C0-B1D4-42F4-872C-B0E462A256B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{120791C0-B1D4-42F4-872C-B0E462A256B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{120791C0-B1D4-42F4-872C-B0E462A256B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{120791C0-B1D4-42F4-872C-B0E462A256B9} = {9C9EB665-4E32-408B-A174-5125566CBE04}
+		{B51ADDB9-747C-4B68-B9B8-7AC64E3810D0} = {01DCDFB5-E128-405C-BF59-A60ECC0F2A46}
+		{C05C2402-B91F-4031-8647-31CE6D9FF6DE} = {B813E42C-5DB1-4D28-8F61-44771AB9F8DC}
+		{F315FC79-3A69-402F-821F-3D6B9A7AE433} = {5DEC729D-EC17-4474-984E-E092A4873421}
+		{87483483-48D5-4DCA-9BAF-7E41CAC43307} = {1A432430-E093-45E2-8641-FE2602BB48E5}
+	EndGlobalSection
+EndGlobal

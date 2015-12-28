@@ -1,0 +1,38 @@
+﻿@model SolsticeDataServices.DAL.Entities.Device
+
+<label>Device Serial Number</label>
+@Html.TextBoxFor(model => model.DeviceSerialNumber, new { @class = "simulator-input", id = "DeviceSerialNumber" })
+@*<input id="" class="simulator-input" type="text" placeholder="Device Serial Number" value="" name="">*@
+<span data-alertid="example" class="errormsg"></span>
+
+<label>Device Access Key</label>
+@Html.TextBoxFor(model => model.DeviceAccessKey, new { @class = "simulator-input", id = "DeviceAccessKey" })
+
+@*<input id="" class="simulator-input" type="text" placeholder="Device Access Key" value="" name="">*@
+<span data-alertid="example" class="errormsg"></span>
+
+<label>Region</label>
+<div>
+    @*<select class="selectpicker">
+            <option value="AP">AP</option>
+            <option value="EN">EN</option>
+            <option value="US">US</option>
+        </select>*@
+    @{
+    // var selVal=Model.;
+    }
+    @*@Html.DropDownList("ddRegion", new List<SelectListItem> { new SelectListItem() { Text = "AP", Value = "AP" }, new SelectListItem() { Text = "EN", Value = "EN" }, new SelectListItem() { Text = "US", Value = "US" } }, new { @class = "selectpicker2", id = "selRegion" })*@
+    @Html.DropDownListFor(model => model.RegionId, new SelectList(ViewBag.Region, "RegionId", "RegionName"), new { @class = "selectpicker2", id = "selRegion" })
+
+</div>
+<span data-alertid="example" class="errormsg"></span>
+
+<label>Event Time</label>
+
+<input id="basic_example_1" class="simulator-calender" type="text" value='' name="basic_example_1"> <span class="utc">UTC</span>
+<div class="clear"></div>
+<span data-alertid="example" class="errormsg"></span>
+
+
+
+

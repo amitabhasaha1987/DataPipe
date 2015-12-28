@@ -1,0 +1,166 @@
+﻿@model SolsticeDataServices.DAL.Entities.Users
+@using System.Web.Mvc.Ajax
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Solstice Data Services™</title>
+
+
+
+
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.bsFormAlerts.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/custom.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.bxslider.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap-select.js")"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @RenderSection("css", required: false)
+
+
+
+
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <nav role="navigation" class="navbar navbar-default navtop">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="/"><img src="~/images/logo.jpg" alt="Solstice Medical" title="Solstice Medical"></a>
+                    </div>
+                    <div class="navbar-collapse menu collapse" id="navbar" aria-expanded="false" style="height: 1px;">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">Solution<span class="caret"></span></a>
+                                <ul role="menu" class="dropdown-menu">
+                                    <li><a href="/Features">Features</a></li>
+                                    <li><a href="/CaseStudies">Case Studies</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">Developers<span class="caret"></span></a>
+                                <ul role="menu" class="dropdown-menu">
+                                    <li><a href="/SignUp">Sign Up</a></li>
+                                    <li><a href="/Documentation">Documentation</a></li>
+                                    <li><a href="/Tools">Tools</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a data-toggle="dropdown" class="dropdown-toggle" href="#" aria-expanded="false">Supports<span class="caret"></span></a>
+                                <ul role="menu" class="dropdown-menu">
+                                    <li><a href="/FAQ">FAQ</a></li>
+                                    <li><a href="/Contact">Contact</a></li>
+                                </ul>
+                            </li>
+                            <li class="top-login"><a href="#dialog" name="modal">Login</a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+                <!--/.container-fluid -->
+            </nav>
+        </div>
+    </div>
+    @RenderBody()
+    <footer>
+        <div class="container">
+            <div class="footer-area">
+                <h2>contact</h2>
+                <div class="so-iconarea">
+                    <div class="social-iocn gplusicon"></div>
+                    <div class="social-iocn twittericon"></div>
+                    <div class="social-iocn fbicon"></div>
+                </div>
+                <div class="clear"></div>
+                <p>Subscribe to our newsletter and get the latest Solstice Data news!</p>
+                <div class="subscription-area">
+                    <input name="" type="text" value="Your Email" onblur="if(this.value == '') { this.value='Your Email'}" onfocus="if (this.value == 'Your Email') {this.value=''}">
+                    <input name="" type="button" class="subs" value="Subscribe">
+                </div>
+                <div class="footer-link">
+                    <ul>
+                        <li><a href="/Features">Features</a></li>
+                        <li><a href="/Contact">Contact</a></li>
+                        <li><a href="/FAQ">FAQ</a></li>
+                        <li><a href="/SignUp">Sign Up</a></li>
+                        <li><a href="/Documentation">Documentation</a></li>
+                        <li style="background-image:none;"><a href="/Tools">Tools</a></li>
+                    </ul>
+                    <p>© Solstice Data™ 2015. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="boxes">
+            <div id="dialog" class="window">
+                <a href="#" class="closebtn">Close it</a>
+                <div class="logindetails" id="loginform">
+                    <h3>Sign In</h3>
+                    @*<form id="login-example-form">*@
+                    @using (Html.BeginForm("Login", "Index", FormMethod.Post, new { id = "login-example-form" }))
+                    {
+                        @Html.ValidationSummary(true)
+
+                        @*<input type="text" name="txtemail" id="txtemail" placeholder="Username" class="popinputbox" />*@
+                        @*<span data-alertid="example1" class="errormsg"></span>*@
+                        @*<input type="text" name="txtpassword" id="txtpassword" placeholder="Email" class="popinputbox" />*@
+                        @*<span data-alertid="example2" class="errormsg"></span>*@
+
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.EmailId, new { @class = "popinputbox", placeholder = "Email ID", type = "email" })
+                            @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "errormsg" })
+                        </div>
+                        <div class="editor-field">
+                            @Html.PasswordFor(model => model.Password, new { @class = "popinputbox", placeholder = "Password" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "errormsg" })
+                        </div>
+                        <p>
+                            <input type="submit" name="" id="btnSignUp" value="Submit" class="submitbtnpop" />
+                        </p>
+                        <div class="editor-field">
+                            <br />
+                            @Html.ActionLink("Forget password?", "ResetPassword", "Index")
+                        </div>
+                    }
+                    @*</form>*@
+                </div>
+            </div>
+            <!-- Mask to cover the whole screen -->
+            <div id="mask"></div>
+        </div>
+    </footer>
+
+
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/bootstrap.min.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/bootstrap-select.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/style.css")" />
+    @*<link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/bootstrap.css.map")" />*@
+    <link type="text/css" rel="stylesheet" href="@Url.Content("http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700,900")" />
+
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+
+

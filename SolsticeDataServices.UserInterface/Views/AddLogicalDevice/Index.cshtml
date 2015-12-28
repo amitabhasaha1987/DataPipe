@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "AddLogicalDevice";
+    Layout = "~/Views/Shared/_Documentation.cshtml";
+}
+
+<h2>AddLogicalDevice</h2>
+
+<ul class="nav nav-pills">
+    <li><a href="#description">Description</a> </li>
+    <li><a href="#request">Request</a></li>
+    <li><a href="#response">Response</a></li>
+    <li><a href="#example">Example</a></li>
+</ul>
+
+<!-- Description -->
+<h3 id="description">Description</h3>
+<p align="justify">
+    AddLogicalDevice adds a device to Solstice Data Services™ making it ready for your commands and pushing events. 
+    AddLogicalDevice also insulates your application from hardware maintenance and replacements by mapping the device's serial number to your application identifier. 
+</p>
+
+ <!-- Request -->
+<h3 id="request">Request</h3>
+
+<div class="assnormalbox">
+    <div class="table-responsive">
+        <div class="bs-example">
+            <table class="table table-hover dashtable table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th> Name </th>
+                        <th> Description </th>
+                        <th> Required </th>
+                    </tr>
+                    <tr>
+                        <td> AccessKey </td>
+                        <td> The AccessKey for your user account. </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> Action </td>
+                        <td> AddLogicalDevice </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> DeviceDefinitionId  </td>
+                        <td> The Id of <a href="/GetDeviceDefinitions">device definition</a> currently available in Solstice Data Services™.  </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> DeviceSerialNumber  </td>
+                        <td> The physical device serial number. This value should be 255 ASCII characters or less.  </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> LogicalDeviceId   </td>
+                        <td> The logical device id to correlate to the device serial number. This value should be 127 ASCII characters or less.   </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> Region   </td>
+                        <td> The region that the RFID device is being placed. Valid values are US,EU and AP. This is used to create the most reliable and lowest latency connection to the device.   </td>
+                        <td> Yes </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+ <!-- Response -->
+<h3 id="response"> Response</h3>
+
+<div class="assnormalbox">
+    <div class="table-responsive">
+        <div class="bs-example">
+            <table class="table table-hover dashtable table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th> Code </th>
+                        <th> Name </th>
+                        <th> Description </th>
+                    </tr>
+                    <tr>
+                        <td> 200 </td>
+                        <td> Success </td>
+                        <td> Indicates that the request is successful. </td>
+                    </tr>
+                    <tr>
+                        <td> 400 </td>
+                        <td> InvalidParameter </td>
+                        <td> Indicates that a request parameter does not comply with the associated constraints. </td>
+                    </tr>
+                    <tr>
+                        <td> 401 </td>
+                        <td> Unauthorized </td>
+                        <td> Indicates that the user has been denied access to the requested resource. </td>
+                    </tr>
+                    <tr>
+                        <td> 500 </td>
+                        <td> InternalError </td>
+                        <td> Indicates an internal service error. </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- Image -->
+<div class="pull-right">
+    <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+</div>
+
+
+<div class="tab-img"><img src="images/AddLogicalDevice.png" alt=""></div>
+
+<!-- Example -->
+<h3 id="example">Example</h3>
+
+<p>Request</p>
+<pre>https://solstice.tersosolutions.com/v1.5/application/?
+    AccessKey=MyAccessKey
+    &amp;Action=AddLogicalDevice
+    &amp;DeviceDefinitionId=d5ac4f89-7113-49e4-8509-29fe6b0fd5c7
+    &amp;DeviceSerialNumber=MyDeviceSerialNumber
+    &amp;LogicalDeviceId=MyLogicalDeviceId
+    &amp;Region=US</pre>
+
+<p>Response</p>
+<pre>    &lt;Solstice xmlns="http://solstice.TersoSolutions.com/v1.5/ConfigureResponse"&gt;
+        &lt;Header/&gt;
+        &lt;ConfigureResponse Id="b72061c0-6cbc-41b0-9819-0aae4f857afe" /&gt;
+    &lt;/Solstice&gt;</pre>
+
+

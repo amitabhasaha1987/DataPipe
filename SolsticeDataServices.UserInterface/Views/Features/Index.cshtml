@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Solstice Features";
+    Layout = "~/Views/Shared/_External.cshtml";
+}
+
+<!--slider area start-->
+<div class="inner-slider-area">
+    <div class="container">
+        <div class="inner-text-slide">
+            <h1>Features</h1>
+        </div>
+    </div>
+</div>
+<!--slider area end-->
+<!--body area start-->
+<section class="container">
+    <div class="innerbodypan">
+        <ul class="casearea">
+            <li>
+                <h3><i class="glyphicon glyphicon-eye-open"> </i> Open Platform</h3>
+
+                <p>Many RFID software companies provide closed loop systems forcing you into processes and functionality that won't match what your business does or needs. Solstice Data™ is different. It was built from the ground up to allow any application to easily integrate RFID into its processes, not the other way around. Solstice Data™ at its core is an infrastructure API with a REST API for commands and configuration and XML messaging for system and device events.</p>
+
+                <p>
+                    For most applications, adding RFID is as easy as adding a device using <a href="#">AddLogicalDevice</a>
+                    and processing RFID events <a href="#">ObjectEvent</a>
+                    and <a href="#">AggregateEvent</a>. While most applications simply process inventory events, some applications will require more control. For those applications, Solstice Data™ offers advanced features for device management, device monitoring and sensor monitoring.
+                </p>
+
+            </li>
+            <li>
+                <h3><i class="glyphicon glyphicon-signal"> </i> Remote Management</h3>
+
+                <p>
+                    Solstice Data™ is a horizontally scaled service with systems distributed around the globe
+                    that work together allowing you to manage your device as if it was on your own network. By using the REST API, you can queue commands to any device and Solstice Data™ will automatically route the command to your device. Using load balanced regional servers, Solstice Data™ allows your devices to have the lowest latency internet connection with the highest availability possible.
+                </p>
+
+                <p>
+                    For most applications managing your device is as simple as managing an Access Control
+                    List for your enclosures using <a href="#">
+                        GetPasses
+                    </a> and <a href="#">
+                        UpdatePasses
+                    </a>. More advanced applications can process the syslog/eventlog events from devices by using the <a href="#">LogEntryEvent</a>. As an
+                    example, an application could raise an alarm to a user when an ACPowerFailure event
+                    occurs and clear the alarm when an ACPowerRestore event is received.
+                </p>
+
+            </li>
+
+            <li>
+                <h3><i class="glyphicon glyphicon-paperclip"> </i> Simple Interfaces</h3>
+
+                <p>We believe that RFID offers unparalleled value. Working in the industry over the last thirteen years, we also know that most traditional RFID projects never make it past pilot. These implementations never see the light of day because the initial development complexity and cost. Developers were spending far too much of their time playing with RFID equipment than adding value to their software. </p>
+
+                <p>Solstice Data™ has painstakingly simplified RFID EE specifications into a developer friendly REST based interface.</p>
+
+            </li>
+        </ul>
+    </div>
+</section>
+<!--body area end-->
+<div class="clear"></div>
+

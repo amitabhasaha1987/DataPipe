@@ -1,0 +1,320 @@
+﻿@{
+    ViewBag.Title = "Solstice FAQ";
+    Layout = "~/Views/Shared/_External.cshtml";
+}
+
+<!--slider area start-->
+<div class="inner-slider-area">
+    <div class="container">
+        <div class="inner-text-slide">
+            <h1> faq</h1>
+        </div>
+    </div>
+</div>
+<!--slider area end-->
+<!--body area start-->
+<section class="container">
+    <div class="innerbodypan">
+        <div class="panel-group accor" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                            What is Solstice Data™?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        Solstice Data™ is a cloud based RFID data broker. It is built on the idea that global RFID implementations should be simple.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            What are some example uses for Solstice Data™?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        Example uses for Solstice Data™ are remote RFID systems, mobile RFID systems and local RFID implementations. Solstice Data™ allows you to combine not only your internal RFID data but the RFID data that is generated outside the four walls of your business.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            What are the benefits of using Solstice Data™?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        Using the Solstice Data™ your application does not have to worry about RFID device drivers, remote device communication, device management and normalizing of RFID events. Instead of focusing on the infrastructure of dealing with RFID and remote RFID devices Solstice Data™ allows you to focus on writing your application to a single point in the cloud.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFour">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            How does Solstice Data™ work?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        Solstice Data™ works by exposing all device commands and application configuration functionality through a REST based web service API. Applications then receive their events using <div class="btn-link"><a href="#">GetEvents</a></div>.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFive">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            How can I get started with the Solstice Data™?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive" aria-expanded="false">
+                    <div class="panel-body">
+                        Click <a href="#" class="btn-link">here</a> to get started!.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingSix">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            Why does the Solstice Data™ not use any RFID open standards like EPCIS or ALE?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix" aria-expanded="false">
+                    <div class="panel-body">
+                        While Terso Solutions supports the EPC Global standards, they were written for local RFID implementations. The complexity of bringing multiple global RFID implementations to the cloud created the need for a proprietary API. We have tried to maintain as much vocabulary as possible from the EPC standards to allow for an easier transition from EPC to our proprietary API.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingSeven">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            Why should I use Solstice Data™ instead of other RFID software frameworks?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven" aria-expanded="false">
+                    <div class="panel-body">
+                        Most frameworks and standards for RFID are built with the requirement that you are not only deploying the RFID devices to a LAN but that you have 100% control of the LAN. Solstice Data™ was built from the ground up for building remote RFID applications. Also, by requiring that all devices be Terso certified intelligent devices, the deployment of new remote locations doesn't require expensive RFID appliances, networking equipment and IT personnel.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingEight">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            What are Device Commands?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight" aria-expanded="false">
+                    <div class="panel-body">
+                        Device commands are commands that will execute on a device physically located at a remote location. When an application sends a REST command request to Solstice Data™ it is queued for the device to execute. Once the device has executed the command a CommandCompletionEvent is published with any results of executing the command.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingNine">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                            Why can Solstice Data™ not perform a command right away?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine" aria-expanded="false">
+                    <div class="panel-body">
+                        To support the ability to install a device on a network that is not controlled by your company all devices use internet friendly protocols and initiate all communication with Solstice Data™. Therefore Solstice Data™ does not have the ability to directly contact the device and queues all device commands until the next time the device polls the command queue.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTen">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                            What is a DeviceSpecificCommand?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen" aria-expanded="false">
+                    <div class="panel-body">
+                        DeviceSpecificCommands are an extension of the base RFID device commands for a device definition. For example Terso Solutions intelligent enclosures allow for updating the access control list.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingEleven">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                            What happens if I queue a command for a device that doesn't support it?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven" aria-expanded="false">
+                    <div class="panel-body">
+                        Solstice Data™ will return a 401 HTTP status code and an error message indicating that the device does not support the command.
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwelve">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                            What are the Exceptions in the CommandCompletionEvent?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwelve" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwelve" aria-expanded="false">
+                    <div class="panel-body">
+                        The exceptions will contain exceptions executing the command on device or any issues in queuing\dequeueing the command.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThirteen">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+                            What is the time limit for the command to be dequeued by the device?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThirteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThirteen" aria-expanded="false">
+                    <div class="panel-body">
+                        The device has two hours to dequeue the command from Solstice Data™. If after four hours the command is still in the queue Solstice Data™ will dequeue the command and publish a CommandCompletionEvent with an Exception indicating that the timeout to dequeue the command has passed.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFourteen">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+                            What is a logical device and why should I care?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFourteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFourteen" aria-expanded="false">
+                    <div class="panel-body">
+                        A logical device is a mapping of a physical device's DeviceSerialNumber to an application created LogicalDeviceId. If a physical device fails and needs to be replaced the mapping of DeviceSerialNumber to LogicalDeviceId can be updated without changing any subscribers.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFifteen">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen">
+                            What is a DeviceDefinition?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFifteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFifteen" aria-expanded="false">
+                    <div class="panel-body">
+                        A DeviceDefinition is a data structure defined by the composite key of a device's manufacturer, name and firmware version. It is used by Solstice Data™ to determine the supported parameters, behavior and connection type.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingSixteen">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen">
+                            How do I replace a physical device?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseSixteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSixteen" aria-expanded="false">
+                    <div class="panel-body">
+                        To replace a physical device, your application will call RemoveLogicalDevice for the existing device. Then you will need to call AddLogicalDevice for the new device.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingSeventeen">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeventeen" aria-expanded="false" aria-controls="collapseSeventeen">
+                            What is the reliability of the Solstice Data™?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseSeventeen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeventeen" aria-expanded="false">
+                    <div class="panel-body">
+                        Solstice Data™ is built on top of industry-proven cloud computing environments. Therefore Solstice Data™ has redundancy across multiple data centers and servers. Every logical component of Solstice Data™ is able to run autonomous if a failure occurs in another component. Finally the Terso intelligent device certification requires that a device is able to store up to two weeks of data in case of a failure.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingEighteen">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEighteen" aria-expanded="false" aria-controls="collapseEighteen">
+                            Does Solstice Data™ deliver messages in the exact order they are received?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseEighteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEighteen" aria-expanded="false">
+                    <div class="panel-body">
+                        Yes, Solstice Data™ makes no attempt to reorder out of order messages received from devices. Devices are required to store and forward events in a FIFO queue (the order in which they occurred).
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingNineteen">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNineteen" aria-expanded="false" aria-controls="collapseNineteen">
+                            How many devices will Solstice Data™ support?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseNineteen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNineteen" aria-expanded="false">
+                    <div class="panel-body">
+                        Solstice Data™ is able to support up to 20,000 intelligent devices per application. This roughly equates to ~25MB to ~50MB of event data per day, per device.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwenty">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwenty" aria-expanded="false" aria-controls="collapseTwenty">
+                            How many API calls will Solstice Data™ support?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwenty" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwenty" aria-expanded="false">
+                    <div class="panel-body">
+                        Solstice Data™ is able to support up to 50 API calls per minute, per application. If your application has more extreme needs than this please contact us and we will work with you on a solution.
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwentyone">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwentyone" aria-expanded="false" aria-controls="collapseTwentyone">
+                            How many commands can I queue up for a single device at one time?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwentyone" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwentyone" aria-expanded="false" style="height: 0px;">
+                    <div class="panel-body">
+                        While the Solstice Data™ can queue up to 50 commands per minute, per application, each device will have a different execution commands based on its hardware. Most RFID devices on the market today are heavily resource constrained. Queuing more than a few messages will cause the devices to slow down. As a rule of thumb, your application should not queue up more than 3 commands per device at one time.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--body area end-->
+<div class="clear"></div>
+

@@ -1,0 +1,440 @@
+﻿@{
+    ViewBag.Title = "Devices";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    //WebGrid grid = new WebGrid();
+    //grid.Bind(Model);
+}
+
+@*@grid.GetHtml(
+    fillEmptyRows: false,
+    alternatingRowStyle: "alternate-row",
+    headerStyle: "grid-header",
+    footerStyle: "grid-footer",
+    mode: WebGridPagerModes.All,
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+    columns: new[] {
+    grid.Column("LogicalDeviceId", canSort: false),
+    grid.Column("DeviceDefinition"),
+    grid.Column("Region"),
+    grid.Column("ContactNo",header: "")
+    }
+    )*@
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+            jQuery('#devicemessage').addClass('hide');
+            jQuery('a[href="#passes"]').removeClass('hide').removeClass('show');
+
+            jQuery.ajax({
+                type: "get",
+                url: "/Device/FillDevice",
+                success: function (data) {
+                    //debugger;
+                    $('.selectpicker').selectpicker();
+                    var device = jQuery('#selDevice');
+                    device.removeClass('selectpicker1');
+                    device.append("<option value=''>-- Device Definition --</option>");
+                    $.each(data, function (i, item) {
+                        //debugger;
+                        device.append("<option value='" + item.DeviceId + "'>" + item.DeviceName + "</option>");
+                    });
+                    device.addClass('selectpicker1');
+
+                    $('.selectpicker1').selectpicker();
+                }
+            });
+
+            jQuery.ajax({
+                type: "get",
+                url: "/Device/FillRegion",
+                success: function (result) {
+                    var region = jQuery('#selRegion');
+                    region.removeClass('selectpicker2');
+                    region.append("<option value=''>-- Region --</option>");
+                    $.each(result, function (j, item) {
+                        //debugger;
+                        region.append("<option value='" + item.RegionId + "'>" + item.RegionName + "</option>");
+                    });
+                    region.addClass('selectpicker2');
+                    $('.selectpicker2').selectpicker();
+
+                }
+            });
+
+            var param1 = getParameterByName('Dev');
+            var param2 = getParameterByName('reg');
+            debugger;
+            if (param1 == null || param1 == "") {
+                //var x = param1;
+                Fillgrid();
+            }
+            else {
+                // Fillgrid();
+                FilterOnLoad(param1, param2);
+                jQuery.ajax({
+                    type: "get",
+                    url: "/Device/FillDevice",
+                    success: function (data) {
+                        //debugger;
+                        var device = jQuery('#selDevice');
+                        device.removeClass('selectpicker1');
+                        device.append("<option value=''>-- Device Definition --</option>");
+                        $.each(data, function (i, item) {
+                            //debugger;
+                            device.append("<option value='" + item.DeviceId + "'>" + item.DeviceName + "</option>");
+                        });
+                        device.addClass('selectpicker1');
+                        $('.selectpicker1 option[value=' + param1 + ']').attr('selected', 'selected');
+                        $('.selectpicker1').selectpicker('render');
+                    }
+                });
+
+                jQuery.ajax({
+                    type: "get",
+                    url: "/Device/FillRegion",
+                    success: function (result) {
+                        var region = jQuery('#selRegion');
+                        region.removeClass('selectpicker2');
+                        region.append("<option value=''>-- Region --</option>");
+                        $.each(result, function (j, item) {
+                            //debugger;
+                            region.append("<option value='" + item.RegionId + "'>" + item.RegionName + "</option>");
+                        });
+                        region.addClass('selectpicker2');
+                        $('.selectpicker2 option[value=' + param2 + ']').attr('selected', 'selected');
+                        $('.selectpicker2').selectpicker('render');
+                    }
+                });
+            }
+
+
+
+
+            // Fillgrid();
+
+            //jQuery('#DivProgress').css('display', 'none');
+        });
+
+        function FilterOnLoad(param1, param2) {
+            jQuery('.row').css('display', 'none');
+            var Device = param1;
+            var Region = param2;
+            if (Device == "0" && Region == "0") {
+                Fillgrid();
+            }
+            else {
+                jQuery.ajax({
+                    type: "get",
+                    url: "/Device/Filter",
+                    data: { Device: Device, Region: Region },
+                    dataType: "json",
+                    success: function (data) {
+                        var tblBody = jQuery('#tblData tbody');
+                        tblBody.empty();
+                        var tblHtml = '';
+                        $.each(data, function (i, item) {
+                            tblHtml += "<tr>";
+                            tblHtml += "<td><a onclick=\"ShowDetails('" + item.LogicalDeviceId + "', " + i + ")\">" + item.LogicalDeviceId + "</a></td>";
+                            tblHtml += "<td>" + item.DeviceName + "</td>";
+                            tblHtml += "<td>" + item.Region + "</td>";
+                            tblHtml += "<td>";
+                            tblHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align" onclick="DeleteDevice(\'' + item.LogicalDeviceId + '\', ' + i + ');"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>';
+                            tblHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>';
+                            if (item.IsDeviceActive == false)
+                                tblHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align" style="display:none;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>';
+                            else
+                                tblHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>';
+                            tblHtml += "</td>";
+                            tblHtml += "</tr>";
+                        });
+
+                        tblBody.append(tblHtml);
+                    }
+                });
+            }
+            document.location.hash = "/Device";
+        }
+
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        function DeleteDevice(DeviceId, Index) {
+            if (confirm("Are you sure you want to delete the Device " + DeviceId + "?")) {
+                jQuery.ajax({
+                    type: "get",
+                    url: "/Device/DeviceDelete",
+                    data: { DeviceId: DeviceId },
+                    dataType: "json",
+                    success: function (data) {
+                        //debugger;
+                        jQuery('#tblData tbody tr:eq(' + Index + ')').hide('slow', function () {
+                            jQuery(this).remove();
+                        });
+                    }
+                });
+            }
+        }
+
+        function Fillgrid() {
+            jQuery.ajax({
+                type: "get",
+                url: "/Device/FillGrid",
+                success: function (data) {
+                    var location = window.location.href.toString();
+                    var grid = jQuery('#tblData tbody');
+                    grid.empty();
+                    var gridHtml = '';
+                    debugger;
+                    $.each(data, function (i, item) {
+                       // alert(item.IsDeviceActive);
+                        gridHtml += "<tr>";
+                        gridHtml += "<td><a onclick=\"ShowDetails('" + item.LogicalDeviceId + "', " + i + ")\">" + item.LogicalDeviceId + "</a></td>";
+                        gridHtml += "<td>" + item.DeviceName + "</td>";
+                        gridHtml += "<td>" + item.Region + "</td>";
+                        gridHtml += "<td>";
+                        gridHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align" onclick="DeleteDevice(\'' + item.LogicalDeviceId + '\', ' + i + ');"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>';
+                        gridHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>';
+                       
+                        if (item.IsDeviceActive == false)
+                            gridHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align" style="display:none;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>';
+                        else
+                            gridHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>';
+                        gridHtml += "</td>";
+                        gridHtml += "</tr>";
+                    });
+                    grid.append(gridHtml);
+                }
+            });
+        }
+
+        function ShowDetails(LogicalDeviceId, index) {
+
+            jQuery(".row").css('display', 'block');
+
+            // removing the selected row class
+            jQuery('#tblData tbody tr').removeClass('row-selected');
+
+            // changing the colour of selected row
+            jQuery('#tblData tbody tr:nth-child(' + (index + 1) + ')').addClass('row-selected');
+
+            // getting the display property of last icon of each 'td'. if it shows then the Passes tab also shows and vice-versa
+            if ((jQuery('#tblData tbody tr:nth-child(' + (index + 1) + ') td:last button:last').css('display')) == 'none') {
+                jQuery('a[href="#passes"').css('display', 'none');
+            }
+            else {
+                jQuery('a[href="#passes"').css('display', 'block');
+            }
+
+            jQuery.ajax({
+                type: "get",
+                url: "/Device/GetDeviceInfo",
+                dataType: "json",
+                data: { LogicalDeviceId: LogicalDeviceId },
+                success: function (data) {
+                    console.log(data);
+                    jQuery('#dd_summary h3').html(data.LogicalDeviceId);
+
+                    var relatedInfo = "<dt>DeviceSerialNumber</dt>";
+                    relatedInfo += "<dd>" + data.DeviceSerialNumber + "</dd>";
+                    relatedInfo += "<dt>DeviceDefinition</dt>";
+                    relatedInfo += "<dd>" + data.DeviceName + "</dd>";
+                    relatedInfo += "<dt>Health</dt>";
+                    relatedInfo += "<dd>Active</dd>";
+                    relatedInfo += "<dt>Policy</dt>";
+                    relatedInfo += "<dd>None</dd>";
+                    relatedInfo += "<dt>Region</dt>";
+                    relatedInfo += "<dd>" + data.Region + "</dd>";
+
+                    jQuery('.dl-horizontal').html(relatedInfo);
+                }
+            });
+
+        }
+
+        function Filter() {
+            jQuery('.row').css('display', 'none');
+            var Device = jQuery('#selDevice option:selected').val();
+            var Region = jQuery('#selRegion option:selected').val();
+            if (Device == "0" && Region == "0") {
+                Fillgrid();
+            }
+            else {
+                jQuery.ajax({
+                    type: "get",
+                    url: "/Device/Filter",
+                    data: { Device: Device, Region: Region },
+                    dataType: "json",
+                    success: function (data) {
+
+                        var tblBody = jQuery('#tblData tbody');
+                        tblBody.empty();
+                        var tblHtml = '';
+
+
+                        if (data == "") {
+
+                            tblHtml += "<tr>";
+                            tblHtml += "<td colspan='4'>Sorry, No Data Found.</td>";
+                            tblHtml += "</tr>";
+
+                        } else {
+                            $.each(data, function (i, item) {                               
+                                tblHtml += "<tr>";
+                                tblHtml += "<td><a onclick=\"ShowDetails('" + item.LogicalDeviceId + "', " + i + ")\">" + item.LogicalDeviceId + "</a></td>";
+                                tblHtml += "<td>" + item.DeviceName + "</td>";
+                                tblHtml += "<td>" + item.Region + "</td>";
+                                tblHtml += "<td>";
+                                tblHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align" onclick="DeleteDevice(\'' + item.LogicalDeviceId + '\', ' + i + ');"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>';
+                                tblHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>';
+                                if (item.IsDeviceActive == false)
+                                    tblHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align" style="display:none;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>';
+                                else
+                                    tblHtml += '<button type="button" class="btn btn-default btn-mini" aria-label="Left Align"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>';
+                                tblHtml += "</td>";
+                                tblHtml += "</tr>";
+                            });
+
+                        }
+                        tblBody.append(tblHtml);
+
+                    }
+                });
+            }
+            //document.location.hash = "/Device";
+        }
+
+    </script>
+
+
+}
+
+
+<!--slider area start-->
+<div class="admin-nav-area">
+    <div class="container">
+        <div class="dash-nav">
+            <h3>My Devices</h3>
+            <div class="iconarea">
+                <ul>
+                    <li><a href="/Device" title="Device"><img src="~/images/navico1.png" alt=""></a></li>
+                    <li><a href="#" title="Events"><img src="~/images/navico2.png" alt=""></a></li>
+                    <li><a href="/Simulator" title="Simulator"><img src="~/images/navico3.png" alt=""></a></li>
+                    <li><a href="#" title="Support"><img src="~/images/navico4.png" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--slider area end-->
+<!--body area start-->
+<section class="container">
+    <div class="adminbodypan">
+        @*<div id="devicemessage" class="alert alert-success show">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <label>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                    sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </label>
+            </div>*@
+        @if (TempData["SubmitSuccess"] != null)
+        {
+            <div id="devicemessage" class="alert alert-success show">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                <span>
+                    @Html.Raw(TempData["SubmitSuccessDtls"])
+                    @Html.Encode(@Html.Raw(TempData["SubmitSuccess"]))
+                    @*@Html.Raw(Convert.ToString(TempData["SubmitSuccess"]))*@
+                </span>
+            </div>
+        }
+        <br />
+        <div class="device-table">
+            <div class="col-lg-6">
+                <button class="btn" onclick='location.href="/Device/Add"'>Add New Device</button>
+            </div>
+            <div class="col-lg-6 text-right">
+                <select name="selDevice" id="selDevice"></select>
+                <select class="" id="selRegion"></select>
+                <button class="btn" onclick="Filter();">Filter</button>
+            </div>
+            <div class="clearfix"></div>
+            <div class="dashbdr"></div>
+            <div class="assboxDeviceAll">
+                <div class="table-responsive">
+                    <div class="bs-example">
+                        <table class="table table-hover dashtable table table-striped table-bordered" id="tblData">
+                            <thead>
+                                <tr>
+                                    <th>LogicalDeviceId</th>
+                                    <th>DeviceDefinition</th>
+                                    <th>Region</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @*@foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@Html.ActionLink(item.LogicalDeviceId, "/Devices?Region=-- Region --&LogicalDeviceId=" + item.LogicalDeviceId)</td>
+                                            <td>@Html.DisplayFor(model => item.DeviceDefinitionId)</td>
+                                            <td>@Html.DisplayFor(model => item.Region)</td>
+                                            <td>
+                                                <button type="button" class="btn btn-default btn-mini" aria-label="Left Align" onclick="DeleteDevice('@Html.DisplayFor(model => item.LogicalDeviceId)');"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                                <button type="button" class="btn btn-default btn-mini" aria-label="Left Align"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+                                                <button type="button" class="btn btn-default btn-mini" aria-label="Left Align"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></button>
+                                            </td>
+                                        </tr>
+                                    }*@
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="display: none;">
+        <div class="col-lg-4 col-md-4 col-sm-4" style="width: 50%;">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#summary" data-toggle="tab">Summary</a></li>
+                <li><a href="#inventory" data-toggle="tab">Inventory</a></li>
+                <li><a href="#passes" data-toggle="tab">Passes</a></li>
+                <li><a href="#events" data-toggle="tab">Events</a></li>
+                <li><a href="#configuration" data-toggle="tab">Configuration</a></li>
+            </ul>
+        </div><!-- col -->
+        <div class="clear"></div>
+        <br />
+        <br />
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="tab-content" style="border-left: none;">
+                <div class="tab-pane active" id="summary">
+                    <div id="dd_summary" class="tab-pane fade active in">
+                        <h3></h3>
+                        <dl class="dl-horizontal"></dl>
+                    </div>
+                </div>
+                <div class="tab-pane" id="inventory">inventory</div>
+                <div class="tab-pane" id="passes">passes</div>
+                <div class="tab-pane" id="events">events</div>
+                <div class="tab-pane" id="configuration">configuration</div>
+            </div><!-- tab-content -->
+        </div><!-- col -->
+    </div><!-- row -->
+</section>
+<!--body area end-->
+<div class="clear"></div>
+

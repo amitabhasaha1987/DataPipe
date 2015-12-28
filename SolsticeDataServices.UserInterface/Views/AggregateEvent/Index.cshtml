@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "AggregateEvent";
+    Layout = "~/Views/Shared/_Documentation.cshtml";
+}
+
+<h2>AggregateEvent</h2>
+<ul class="nav nav-pills">
+    <li><a href="#description">Description</a> </li>
+    <li><a href="#request">Event Schema</a></li>
+    <li><a href="#example">Example</a></li>
+</ul>
+
+<!-- Description -->
+<h3 id="description">Description</h3>
+<p>
+    AggregateEvent is used to indicate a change in the current tag list. For example if a tag is removed
+    from a device's read zone an AggregateEvent message would be published with a REMOVE and the EPC of
+    the tag removed. If a tag is added to a device's read zone an AggregateEvent message would be published
+    with an ADD and the EPC of the tag added.
+</p>
+
+<!-- Event Schema -->
+<h3 id="request">Event Schema</h3>
+<div class="pull-left">
+    <span class="label label-info">Heads up!</span> Click the image to zoom!
+</div>
+<div class="pull-right">
+    <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+</div>
+
+<div class="tab-img">
+    <img src="images/AggregateEvent.png" alt="">
+</div>
+
+<!-- Example -->
+<h3 id="example">Example</h3>
+<p>Published AggregateEvent</p>
+<pre>
+    &lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.0/AggregateEvent"&gt;
+        &lt;Header eventid="c4216b4d-b946-441b-82f6-411147f10961" EventTime="2012-09-30T20:28:00Z"
+         LogicalDeviceId="MyLogicalDeviceId" ReceivedTime="2012-09-30T20:28:03Z" /&gt;
+        &lt;AggregateEvent&gt;
+            &lt;ActionEPCLists&gt;
+                &lt;ActionEPCList type="ADD"&gt;
+                    &lt;EPC&gt;0909A62B1C07008430001022&lt;/EPC&gt;
+                    &lt;EPC&gt;0909A62B1C07008430001023&lt;/EPC&gt;
+                    &lt;EPC&gt;0909A62B1C07008430003025&lt;/EPC&gt;
+                    &lt;EPC&gt;0909A62B1C07008430003025&lt;/EPC&gt;
+                &lt;/ActionEPCList&gt;
+                &lt;ActionEPCList type="REMOVE"&gt;
+                    &lt;EPC&gt;0909A62B1C06008430001027&lt;/EPC&gt;
+                    &lt;EPC&gt;0909A62B1C07008420001026&lt;/EPC&gt;
+                    &lt;EPC&gt;0909A62B1C07308430003025&lt;/EPC&gt;
+                &lt;/ActionEPCList&gt;
+            &lt;/ActionEPCLists&gt;
+            &lt;DeviceExtensionList&gt;
+            &lt;DeviceExtension Name="PassRfid" Value="010970F395" /&gt;
+            &lt;/DeviceExtensionList&gt;
+        &lt;/AggregateEvent&gt;
+    &lt;/Solstice&gt;
+</pre>

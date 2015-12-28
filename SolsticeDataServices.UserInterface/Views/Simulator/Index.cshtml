@@ -1,0 +1,196 @@
+﻿@*@using SolsticeDataServices.DAL.Entities;*@
+@*@model SolsticeDataServices.DAL.Entities.Device;*@
+
+@{
+   ViewBag.Title = "Simulator";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+   // SolsticeDataServices.DAL.Entities.Device tesp = ViewData["temp"] as SolsticeDataServices.DAL.Entities.Device;
+}
+
+
+
+@section css{
+
+    <link href="~/Content/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-select.css" rel="stylesheet" />
+
+}
+
+@section scripts{
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon.js"></script>
+    <script src="~/Scripts/jquery-ui-timepicker-addon-i18n.min.js"></script>
+    <script src="~/Scripts/jquery-ui-sliderAccess.js"></script>
+  <script type="text/javascript">
+
+        $(document).ready(function() {
+         
+            $('.simulator-calender').datetimepicker({
+                timeFormat: 'HH:mm:ss',
+                stepHour: 2,
+                stepMinute: 10,
+                stepSecond: 10
+            });
+
+
+            var myDate = new Date();
+            var prettyDate = (myDate.getMonth() + 1) + '/' + myDate.getDate() + '/' + myDate.getFullYear() + ' ' + twoDigit(myDate.getHours()) + ':' + twoDigit(myDate.getMinutes()) + ':' + twoDigit(myDate.getSeconds());
+
+            $('.simulator-calender').val(prettyDate);
+            $('.selectpicker2').selectpicker();
+
+        });
+
+        function twoDigit(number) {
+            var twodigit = number >= 10 ? number : "0" + number.toString();
+            return twodigit;
+        }
+
+
+    </script>
+
+}
+<!--slider area start-->
+<div class="admin-nav-area">
+    <div class="container">
+        <div class="dash-nav">
+            <h3>Simulator</h3>
+            <div class="iconarea">
+                <ul>
+                    <li><a href="/Device" title="Device"><img src="~/images/navico1.png" alt=""></a></li>
+                    <li><a href="#" title="Events"><img src="~/images/navico2.png" alt=""></a></li>
+                    <li><a href="/Simulator" title="Simulator"><img src="~/images/navico3.png" alt=""></a></li>
+                    <li><a href="#" title="Support"><img src="~/images/navico4.png" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--slider area end-->
+<!--body area start-->
+<section class="container">
+    <div class="maindocinnerpan">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <ul class="nav nav-tabs categories col-lg-12">
+                    <li class="cat-heading"><h3>Events</h3></li>
+                    <li class="active"><a href="#tab1" data-toggle="tab">AggregateEvent</a></li>
+                    <li><a href="#tab2" data-toggle="tab">CommandCompletionEvent</a></li>
+                    <li><a href="#tab3" data-toggle="tab">HeartbeatEvent</a></li>
+                    <li><a href="#tab4" data-toggle="tab">LogEntryEvent</a></li>
+                    <li><a href="#tab5" data-toggle="tab">ObjectEvent</a></li>
+                    <li class="no-border"><a href="#tab6" data-toggle="tab">SensorReadingEvent</a></li>
+
+                </ul>
+            </div><!-- col -->
+
+            <div class="col-lg-9 col-md-9 col-sm-9">
+                <div class="tab-content">
+
+
+                    <div class="tab-pane active" id="tab1">
+                        <div class="tab-content-area simulator">
+                            <h4>AggregateEvent</h4>
+
+                            <form class="simulator-form form-horizontal" id="example-form">
+                                @Html.Partial("SimulatorPartialView")
+                                <div class="clear"></div>
+                                <label>Add EPC</label>
+                                <textarea cols="" rows="" id="" class="simulator-textarea" placeholder="Add an EPC" value="" name=""></textarea>
+                                <span data-alertid="example" class="errormsg"></span>
+
+                                <label>Remove EPC</label>
+                                <textarea cols="" rows="" id="" class="simulator-textarea" placeholder="Remove an EPC" value="" name=""></textarea>
+                                <span data-alertid="example" class="errormsg"></span>
+
+                                <label>Divice Extension (Name|Value)</label>
+                                <textarea cols="" rows="" id="" class="simulator-textarea" placeholder="Add a Divice Extension (Name|Value)" value="" name=""></textarea>
+                                <span data-alertid="example" class="errormsg"></span>
+
+                                <input id="" class="submitbtnpop" type="submit" value="Submit" name="">
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane" id="tab2">
+                        <div class="tab-content-area simulator">
+                            <h4>CommandCompletionEvent</h4>
+                            <form class="simulator-form form-horizontal" id="example-form">
+                                @Html.Partial("SimulatorPartialView")
+                                <div class="clear"></div>
+                                <label>Command Id</label>
+                                <input id="" class="simulator-input" type="text" placeholder="Command Id" value="" name="">
+                                <span data-alertid="example" class="errormsg"></span>
+                                <label>Output Parameter(Name|Value)</label>
+                                <textarea cols="" rows="" id="" class="simulator-textarea" placeholder="Add an Output Parameter Name|Value" value="" name=""></textarea>
+                                <span data-alertid="example" class="errormsg"></span>
+
+                                <label>Exception(Name|Message)</label>
+                                <textarea cols="" rows="" id="" class="simulator-textarea" placeholder="Add an Exception Name|Message" value="" name=""></textarea>
+                                <span data-alertid="example" class="errormsg"></span>
+
+                                <label>Divice Extension (Name|Value)</label>
+                                <textarea cols="" rows="" id="" class="simulator-textarea" placeholder="Add a Divice Extension Name|Value" value="" name=""></textarea>
+                                <span data-alertid="example" class="errormsg"></span>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab3">
+                        <div class="tab-content-area simulator">
+                            <h4>HeartbeatEvent</h4>
+                            <form class="simulator-form form-horizontal" id="example-form">
+                                @Html.Partial("SimulatorPartialView")
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab4">
+                        <div class="tab-content-area simulator">
+                            <h4>LogEntryEvent</h4>
+                            <form class="simulator-form form-horizontal" id="example-form">
+                                @Html.Partial("SimulatorPartialView")
+                                <div class="clear"></div>
+                                <label>Log Entry (Level|LogTime|Message|Type)</label>
+                                <textarea cols="" rows="" id="" class="simulator-textarea" placeholder="Add a Log Entry Level|LogTime|Message|Type" value="" name=""></textarea>
+                                <span data-alertid="example" class="errormsg"></span>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab5">
+                        <div class="tab-content-area simulator">
+                            <h4>ObjectEvent</h4>
+                            <form class="simulator-form form-horizontal" id="example-form">
+                                @Html.Partial("SimulatorPartialView")
+                                <div class="clear"></div>
+                                <label>Observe EPC</label>
+                                <textarea cols="" rows="" id="" class="simulator-textarea" placeholder="Add an EPC" value="" name=""></textarea>
+                                <span data-alertid="example" class="errormsg"></span>
+                                <label>Device Extension (Name|Value)</label>
+                                <textarea cols="" rows="" id="" class="simulator-textarea" placeholder="Add a Divice Extension Name|Value" value="" name=""></textarea>
+                                <span data-alertid="example" class="errormsg"></span>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab6">
+                        <div class="tab-content-area simulator">
+                            <h4>SensorReadingEvent</h4>
+                            <form class="simulator-form form-horizontal" id="example-form">
+                                @Html.Partial("SimulatorPartialView")
+                                <div class="clear"></div>
+                                <label>Sensor Reading (Name|Value|ReadingTime)</label>
+                                <textarea cols="" rows="" id="" class="simulator-textarea" placeholder="Add a Sensor Reading Name|Value|ReadingTime" value="" name=""></textarea>
+                                <span data-alertid="example" class="errormsg"></span>
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div><!-- tab-content -->
+            </div><!-- col -->
+        </div><!-- row -->
+    </div>
+</section>

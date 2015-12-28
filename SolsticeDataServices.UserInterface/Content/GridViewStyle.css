@@ -1,0 +1,63 @@
+﻿.PGrid {
+    width: 100%;
+    background-color: #fff;
+    margin: 20px 0 10px 0;
+    border: solid 1px #5285ba;
+    border-collapse: collapse;
+}
+
+.Header {
+    padding: 6px 8px;
+    color: #fff;
+    background: #5285ba url(/images/grd_head.png) repeat-x top;
+    border-left: solid 1px #82b9f1;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+    .Header a {
+        color: white;
+        font-weight: bold;
+    }
+
+.PGrid th {
+    padding: 6px 8px;
+    color: white;
+    background: #5285ba url(/images/grd_head.png) repeat-x top;
+    border-left: solid 1px #82b9f1;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.PGrid td {
+    padding: 6px 8px;
+    border: solid 1px #c1c1c1;
+    color: #717171;
+    font-size: 12px;
+}
+
+
+.altRow {
+    background-color: #EEEEEE;
+    color: #000;
+}
+
+.pgr {
+    background: #618DBC;
+    border-width: 0;
+    padding: 0 6px;
+    border-left: solid 1px #666;
+    font-weight: bold;
+    color: #fff;
+    line-height: 12px;
+}
+
+    .pgr a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+        .pgr a:hover {
+            color: #000;
+            text-decoration: none;
+        }

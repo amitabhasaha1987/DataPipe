@@ -1,0 +1,174 @@
+﻿
+@{
+    ViewBag.Title = "SetConfigValuesCommand";
+    Layout = "~/Views/Shared/_Documentation.cshtml";
+}
+
+
+    <h2>SetConfigValuesCommand</h2>
+    <ul class="nav nav-pills">
+        <li><a href="#execution5">Execution</a> </li>
+        <li><a href="#description5">Description</a> </li>
+        <li><a href="#request5">Request</a></li>
+        <li><a href="#response5">Response</a></li>
+        <li><a href="#example5">Example</a></li>
+    </ul>
+
+    <!-- Execution -->
+    <h3 id="execution5">Execution</h3>
+
+    <div class="assnormalbox">
+        <div class="table-responsive">
+            <div class="bs-example">
+                <table class="table table-hover dashtable table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th> Online  </th>
+                            <th> Offline  </th>
+                        </tr>
+                        <tr>
+                            <td> Immediate Execution, Immediate and Published Results  </td>
+                            <td> Queued Execution, Published Results   </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- description -->
+    <h3 id="description5">Description</h3>
+    <p> SetConfigValuesCommand instructs the device to set its configuration parameters to user provided values.   </p>
+
+    <!-- Request -->
+    <h3 id="request5">Request</h3>
+    <div class="assnormalbox">
+        <div class="table-responsive">
+            <div class="bs-example">
+                <table class="table table-hover dashtable table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th> Name  </th>
+                            <th> Description  </th>
+                            <th> Required  </th>
+                        </tr>
+                        <tr>
+                            <td> AccessKey  </td>
+                            <td> The AccessKey for your user account.   </td>
+                            <td> Yes  </td>
+                        </tr>
+                        <tr>
+                            <td> Action  </td>
+                            <td> SetConfigValuesCommand   </td>
+                            <td> Yes  </td>
+                        </tr>
+                        <tr>
+                            <td> LogicalDeviceId   </td>
+                            <td> The logical device identifier from <a href="/AddLogicalDevice">AddLogicalDevice</a>.   </td>
+                            <td> Yes  </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-info">
+        <strong>More Info!</strong> Add the parameters you want to set on the device as query string arguments. Complete documentation on a <a href="/GetDeviceDefinitions">DeviceDefinition's</a> parameters can be found on
+        its <a href="/Enclosures">Device</a> page.
+    </div>
+
+    <!-- Response -->
+    <h3 id="response5"> Response</h3>
+
+    <div class="assnormalbox">
+        <div class="table-responsive">
+            <div class="bs-example">
+                <table class="table table-hover dashtable table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th> Code </th>
+                            <th> Name </th>
+                            <th> Description </th>
+                        </tr>
+                        <tr>
+                            <td> 200 </td>
+                            <td> Success </td>
+                            <td> Indicates that the request is successful. </td>
+                        </tr>
+                        <tr>
+                            <td> 400 </td>
+                            <td> InvalidParameter </td>
+                            <td> Indicates that a request parameter does not comply with the associated constraints. </td>
+                        </tr>
+                        <tr>
+                            <td> 401 </td>
+                            <td> Unauthorized </td>
+                            <td> Indicates that the user has been denied access to the requested resource. </td>
+                        </tr>
+                        <tr>
+                            <td> 500 </td>
+                            <td> InternalError </td>
+                            <td> Indicates an internal service error. </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Image -->
+    <div class="pull-right">
+        <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+    </div>
+
+    <div class="tab-img"><img src="images/SetConfigValuesCommand.png" alt=""></div>
+
+    <!-- Example -->
+    <h3 id="example5">Example</h3>
+
+    <p>Request</p>
+    <pre>https://Solstice.tersosolutions.com/v1.5/application/?
+Action=SetConfigValuesCommand
+&amp;AccessKey=MyAccessKey
+&amp;LogicalDeviceId=MyLogicalDeviceId
+&amp;IP=10.6.20.241
+&amp;SubNet=255.255.255.0
+</pre>
+    <p>Response</p>
+    <pre>&lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.5/CommandResponse"&gt;
+        &lt;Header/&gt;
+        &lt;CommandResponse CommandId="7a736c29-e2e0-44e8-a087-3f92d58d6fc1"  &gt;
+            &lt;OutputParameterList /&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;CommandResponse/&gt;
+    &lt;/Solstice&gt;
+</pre>
+    <p>Published CommandQueuedEvent </p>
+    <pre>&lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.5/CommandQueuedEvent"&gt;
+        &lt;Header EventId="0e4c3569-f16a-4d6b-9e6e-9186459a0046" EventTime="2012-10-05T19:50:51Z"
+         LogicalDeviceId="MyLogicalDeviceId" /&gt;
+        &lt;CommandQueuedEvent CommandId="7a736c29-e2e0-44e8-a087-3f92d58d6fc1"
+         CommandName="SetConfigValuesCommand" UserName="MyUserName"&gt;
+            &lt;ParameterList&gt;
+                &lt;Parameter Name="ip" Value="10.6.20.241" /&gt;
+                &lt;Parameter Name="subnet" Value="255.255.255.0" /&gt;
+            &lt;/ParameterList&gt;
+        &lt;/CommandQueuedEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+    <p>Published CommandCompletionEvent </p>
+    <pre>&lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.0/CommandCompletionEvent"&gt;
+        &lt;Header EventId="34dba74f-6d7c-4bdd-b29c-72bd6edb15a8" EventTime="2012-10-05T20:07:13Z"
+         ReceivedTime="2012-10-05T20:07:14Z"/&gt;
+        &lt;CommandCompletionEvent CommandId="7a736c29-e2e0-44e8-a087-3f92d58d6fc1"&gt;
+            &lt;OutputParameterList/&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;/CommandCompletionEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+
+

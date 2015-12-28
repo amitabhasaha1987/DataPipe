@@ -1,0 +1,184 @@
+﻿
+@{
+    ViewBag.Title = "UpdateFirmwareCommand";
+    Layout = "~/Views/Shared/_Documentation.cshtml";
+}
+
+<div class="tab-content-area">
+    <h2>UpdateFirmwareCommand</h2>
+    <ul class="nav nav-pills">
+        <li><a href="#execution6">Execution</a> </li>
+        <li><a href="#description6">Description</a> </li>
+        <li><a href="#request6">Request</a></li>
+        <li><a href="#response6">Response</a></li>
+        <li><a href="#example6">Example</a></li>
+    </ul>
+
+    <!-- Execution -->
+    <h3 id="execution6">Execution</h3>
+
+    <div class="assnormalbox">
+        <div class="table-responsive">
+            <div class="bs-example">
+                <table class="table table-hover dashtable table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th> Online  </th>
+                            <th> Offline  </th>
+                        </tr>
+                        <tr>
+                            <td> Immediate Execution, Published Results   </td>
+                            <td> Queued Execution, Published Results   </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- description -->
+    <h3 id="description6">Description</h3>
+    <p> SetConfigValuesCommandUpdateFirmwareCommand will command the unit to update either the Agent firmware or the Reader firmware from a specified URL.  </p>
+
+    <!-- Request -->
+    <h3 id="request6">Request</h3>
+    <div class="assnormalbox">
+        <div class="table-responsive">
+            <div class="bs-example">
+                <table class="table table-hover dashtable table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th> Name  </th>
+                            <th> Description  </th>
+                            <th> Required  </th>
+                        </tr>
+                        <tr>
+                            <td> AccessKey  </td>
+                            <td> The AccessKey for your user account.   </td>
+                            <td> Yes  </td>
+                        </tr>
+                        <tr>
+                            <td> Action  </td>
+                            <td> UpdateFirmwareCommand    </td>
+                            <td> Yes  </td>
+                        </tr>
+                        <tr>
+                            <td> Component   </td>
+                            <td> The component that the firmware is being upgraded on. Valid values are Agent and Reader.  </td>
+                            <td> Yes  </td>
+                        </tr>
+                        <tr>
+                            <td> LogicalDeviceId   </td>
+                            <td> The logical device identifier from <a href="/AddLogicalDevice">AddLogicalDevice</a>.   </td>
+                            <td> Yes  </td>
+                        </tr>
+                        <tr>
+                            <td> NewDeviceDefinitionId    </td>
+                            <td> The Id of a new <a href="/GetDeviceDefinitions">DeviceDefinition</a> that the device will be updated to.    </td>
+                            <td> No  </td>
+                        </tr>
+                        <tr>
+                            <td> Url </td>
+                            <td> The url to download the new firmware file from.    </td>
+                            <td> Yes  </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Response -->
+    <h3 id="response6">Response</h3>
+
+    <div class="assnormalbox">
+        <div class="table-responsive">
+            <div class="bs-example">
+                <table class="table table-hover dashtable table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th> Code </th>
+                            <th> Name </th>
+                            <th> Description </th>
+                        </tr>
+                        <tr>
+                            <td> 200 </td>
+                            <td> Success </td>
+                            <td> Indicates that the request is successful. </td>
+                        </tr>
+                        <tr>
+                            <td> 400 </td>
+                            <td> InvalidParameter </td>
+                            <td> Indicates that a request parameter does not comply with the associated constraints. </td>
+                        </tr>
+                        <tr>
+                            <td> 401 </td>
+                            <td> Unauthorized </td>
+                            <td> Indicates that the user has been denied access to the requested resource. </td>
+                        </tr>
+                        <tr>
+                            <td> 500 </td>
+                            <td> InternalError </td>
+                            <td> Indicates an internal service error. </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Image -->
+    <div class="pull-right">
+        <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+    </div>
+
+    <div class="tab-img"><img src="images/UpdateFirmwareCommand.png" alt=""></div>
+
+    <!-- Example -->
+    <h3 id="example6">Example</h3>
+    <p>Request</p>
+    <pre>https://Solstice.tersosolutions.com/v1.5/application/?
+AccessKey=MyAccessKey
+&amp;Action=UpdateFirmwareCommand
+&amp;Component=Agent
+&amp;LogicalDeviceId=MyLogicalDeviceId
+&amp;NewDeviceDefinitionId=39db2677-6991-4552-997d-7971c2eaa804
+&amp;Url=http%3a%2f%2fsolstice.tersosolutions.com%2fts%2f3.1.1.zip
+</pre>
+    <p>Response </p>
+    <pre>&lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.5/CommandResponse"&gt;
+        &lt;Header/&gt;
+        &lt;CommandResponse CommandId="daf5d58c-7658-479c-8f29-033de3031b33"  &gt;
+            &lt;OutputParameterList /&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;CommandResponse/&gt;
+    &lt;/Solstice&gt;
+</pre>
+    <p>Published CommandQueuedEvent </p>
+    <pre>&lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.5/CommandQueuedEvent"&gt;
+        &lt;Header EventId="05dc96e3-3499-450f-b976-5c0d07546480" EventTime="2012-10-05T21:41:38Z"
+         LogicalDeviceId="MyLogicalDeviceId" /&gt;
+        &lt;CommandQueuedEvent CommandId="daf5d58c-7658-479c-8f29-033de3031b33" CommandName="UpdateFirmwareCommand"
+         UserName="MyUserName"&gt;
+            &lt;ParameterList&gt;
+                &lt;Parameter Name="Component" Value="AGENT" /&gt;
+                &lt;Parameter Name="Url" Value="http://Solstice.tersosolutions.com/ts/3.1.1.zip" /&gt;
+            &lt;/ParameterList&gt;
+        &lt;/CommandQueuedEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+    <p>Published CommandCompletionEvent</p>
+    <pre>&lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.0/CommandCompletionEvent"&gt;
+        &lt;Header EventId="e068a92b-6d49-4fed-b0cf-26dd6de06bc2" EventTime="2012-10-05T21:47:01Z"
+         ReceivedTime="2012-10-05T21:47:01Z"/&gt;
+        &lt;CommandCompletionEvent CommandId="daf5d58c-7658-479c-8f29-033de3031b33"&gt;
+            &lt;OutputParameterList/&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;/CommandCompletionEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+

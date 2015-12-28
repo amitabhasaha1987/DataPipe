@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewBag.Title = "GetEPCListCommand";
+    Layout = "~/Views/Shared/_Documentation.cshtml";
+}
+
+
+    <h2>GetEPCListCommand</h2>
+
+    <ul class="nav nav-pills">
+        <li><a href="#execution3">Execution</a> </li>
+        <li><a href="#description3">Description</a> </li>
+        <li><a href="#request3">Request</a></li>
+        <li><a href="#response3">Response</a></li>
+        <li><a href="#example3">Example</a></li>
+    </ul>
+
+    <!-- Execution -->
+    <h3 id="execution3">Execution</h3>
+
+    <div class="assnormalbox">
+        <div class="table-responsive">
+            <div class="bs-example">
+                <table class="table table-hover dashtable table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th> Online  </th>
+                            <th> Offline  </th>
+                        </tr>
+                        <tr>
+                            <td> Immediate Execution, Published Results </td>
+                            <td> Queued Execution, Published Results  </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- description -->
+    <h3 id="description3">Description</h3>
+    <p> GetEPCListCommand instructs the device to scan for RFID tags.  </p>
+
+    <!-- Request -->
+    <h3 id="request3">Request</h3>
+    <div class="assnormalbox">
+        <div class="table-responsive">
+            <div class="bs-example">
+                <table class="table table-hover dashtable table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th> Name  </th>
+                            <th> Description  </th>
+                            <th> Required  </th>
+                        </tr>
+                        <tr>
+                            <td> AccessKey  </td>
+                            <td> The AccessKey for your user account.   </td>
+                            <td> Yes  </td>
+                        </tr>
+                        <tr>
+                            <td> Action  </td>
+                            <td> GetEPCListCommand  </td>
+                            <td> Yes  </td>
+                        </tr>
+                        <tr>
+                            <td> LogicalDeviceId   </td>
+                            <td> The logical device identifier from <a href="/AddLogicalDevice">AddLogicalDevice</a>.   </td>
+                            <td> Yes  </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Response -->
+    <h3 id="response3"> Response</h3>
+
+    <div class="assnormalbox">
+        <div class="table-responsive">
+            <div class="bs-example">
+                <table class="table table-hover dashtable table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <th> Code </th>
+                            <th> Name </th>
+                            <th> Description </th>
+                        </tr>
+                        <tr>
+                            <td> 200 </td>
+                            <td> Success </td>
+                            <td> Indicates that the request is successful. </td>
+                        </tr>
+                        <tr>
+                            <td> 400 </td>
+                            <td> InvalidParameter </td>
+                            <td> Indicates that a request parameter does not comply with the associated constraints. </td>
+                        </tr>
+                        <tr>
+                            <td> 401 </td>
+                            <td> Unauthorized </td>
+                            <td> Indicates that the user has been denied access to the requested resource. </td>
+                        </tr>
+                        <tr>
+                            <td> 500 </td>
+                            <td> InternalError </td>
+                            <td> Indicates an internal service error. </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Image -->
+    <div class="pull-right">
+        <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+    </div>
+
+    <div class="tab-img"><img src="images/GetEPCListCommand.png" alt=""></div>
+
+    <!-- Example -->
+    <h3 id="example3">Example</h3>
+
+    <p>Request</p>
+    <pre>https://Solstice.tersosolutions.com/v1.5/application/?
+AccessKey=MyAccessKey
+&amp;Action=GetEPCListCommand
+&amp;&LogicalDeviceId=MyLogicalDeviceId
+</pre>
+    <p>Response</p>
+    <pre>&lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.5/CommandResponse"&gt;
+        &lt;Header/&gt;
+        &lt;CommandResponse CommandId="76b6b2db-fe29-4b9d-a49e-b141c72fe422"  &gt;
+            &lt;OutputParameterList /&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;CommandResponse/&gt;
+    &lt;/Solstice&gt;
+</pre>
+    <p>Published CommandQueuedEvent </p>
+    <pre> &lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.5/CommandQueuedEvent"&gt;
+        &lt;Header EventId="97d52fd6-bd53-4388-948a-307b5f4ccbfe" EventTime="2012-09-29T20:28:00Z"
+         LogicalDeviceId="MyLogicalDeviceId" /&gt;
+        &lt;CommandQueuedEvent CommandId="76b6b2db-fe29-4b9d-a49e-b141c72fe422"
+         CommandName="GetEPCListCommand" UserName="MyUserName"&gt;
+            &lt;ParameterList /&gt;
+        &lt;/CommandQueuedEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+    <p>Published CommandCompletionEvent</p>
+    <pre>&lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.0/CommandCompletionEvent"&gt;
+        &lt;Header EventId="50620b8f-2a58-4b83-865f-e0bebc903d6d" EventTime="2012-09-29T20:34:14Z" 
+         ReceivedTime="2012-09-29T20:34:15Z"/&gt;
+        &lt;CommandCompletionEvent CommandId="76b6b2db-fe29-4b9d-a49e-b141c72fe422"&gt;
+            &lt;OutputParameterList&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F3" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F4" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F5" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F6" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F7" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F8" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F9" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BA" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BB" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BC" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BD" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BE" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BF" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BG" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BH" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BI" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BJ" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BK" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BL" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BM" /&gt;                
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BN" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BO" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BP" /&gt;
+            &lt;/OutputParameterList&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;/CommandCompletionEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+

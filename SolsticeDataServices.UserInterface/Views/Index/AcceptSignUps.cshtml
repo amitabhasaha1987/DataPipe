@@ -1,0 +1,53 @@
+﻿@model SolsticeDataServices.DAL.Entities.SignUp
+@{
+    ViewBag.Title = "AcceptSignUps";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<center>
+    <table class="table table-hover dashtable table table-striped table-bordered" id="tblData" style="width: 80%;">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Company</th>
+                <th>Email ID</th>
+                <th>Contact</th>
+                <th>Password</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Kuntal</td>
+                <td>Ghosh</td>
+                <td>Indusnet</td>
+                <td>kuntal.ghosh@indusnet.co.in</td>
+                <td>9836614948</td>
+                <td><input type="text" class="form-control" /></td>
+                <td><a>Accept</a> | <a>Reject</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <div id="DivGrid">
+        @{
+            var grid = new WebGrid(canPage: true, rowsPerPage: 4, ajaxUpdateContainerId: "DivGrid", canSort: true);
+            @grid.GetHtml(tableStyle: "PGrid",
+                          alternatingRowStyle: "altRow",
+                          headerStyle: "Header",
+                          footerStyle: "pgr",
+                          htmlAttributes: new { id = "DataTable" },
+                          columns: grid.Columns(
+                                grid.Column("FirstName"),
+                                grid.Column("LastName"),
+                                grid.Column("Contact"),
+                                grid.Column("Email"),
+                                grid.Column("Company"),
+                                grid.Column("", header: "Password", format: @<text>@Html.TextBox("Password")</text>),
+                                grid.Column("", header: "Edit", format: @<text>@Html.ActionLink("Accept", "Accept", "Index", new { id = item.ID }, new { target = "" })</text>),
+                                grid.Column("", header: "Delete", format: @<text>@Html.ActionLink("Reject", "Reject", "Index", new { id = item.ID }, new { target = "" })</text>))
+            );
+        }
+    </div>
+</center>

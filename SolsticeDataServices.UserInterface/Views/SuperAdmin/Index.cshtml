@@ -1,0 +1,103 @@
+﻿@model IEnumerable<SolsticeDataServices.DAL.Entities.Users>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_SuperAdminLayout.cshtml";
+}
+
+    @section css{
+                      <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/GridViewStyle.css")" />
+                      <style type="text/css">
+                          table td {
+                              vertical-align: middle !important;
+                          }
+                      </style>        
+    }
+
+    @section scripts{
+                      <script type="text/javascript">
+                          function Accept(url, userid, email, rownumber) {
+                              var textbox_value = jQuery('table tbody tr:nth-child(' + rownumber + ') td:nth-child(7) input[type="text"]').val();
+                              if (textbox_value != "") {
+                                  $.ajax({
+                                      type: "post",
+                                      url: url,
+                                      data: { UserId: userid, Email: email, Password: textbox_value },
+                                      dataType: "json",
+                                      success: function (data) {
+                                          if (data == '1') {
+                                              jQuery('table tbody tr:nth-child(' + rownumber + ')').hide('slow', function () {
+                                                  $(this).remove();
+                                              });
+                                              alert('User successfully approved');
+                                          }
+                                          else if (data == '0') {
+                                              alert('Problem while approving the user');
+                                          }
+                                          else if (data == '2') {
+                                              alert('Email Id already registered');
+                                          }
+                                      }
+                                  });
+                              }
+                              else {
+                                  alert('Please enter a password');
+                              }
+                          }
+                          function Reject(url, rownumber) {
+                              if (confirm('Are you sure you want to disapprove this signup request?')) {
+                                  $.ajax({
+                                      type: "get",
+                                      url: url,
+                                      dataType: "json",
+                                      success: function (data) {
+                                          if (data) {
+                                              jQuery('table tbody tr:nth-child(' + rownumber + ')').hide('slow', function () {
+                                                  $(this).remove();
+                                              });
+                                              alert('User successfully disapproved');
+                                          }
+                                          else {
+                                              alert('Problem while disapproving the user');
+                                          }
+                                      }
+                                  });
+                              }
+                          }
+                      </script>
+
+    }
+
+
+<center>
+    <br />
+    <div class="device-table">
+        <div id="DivGrid" class="assbox">
+            @{
+                int rowVal = 0;
+                var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 4, ajaxUpdateContainerId: "DivGrid", canSort: true);
+                @grid.GetHtml(//tableStyle: "PGrid",
+                        //alternatingRowStyle: "altRow",
+                        //headerStyle: "Header",
+                        //footerStyle: "pgr",
+                          tableStyle: "table table-hover dashtable table table-striped table-bordered",
+                          htmlAttributes: new { id = "DataTable", style = "width: 80%;" },
+                          columns: grid.Columns(
+                                         grid.Column("", "Serial", format: item => rowVal = rowVal + 1),
+                                grid.Column("FirstName"),
+                                grid.Column("LastName"),
+                                grid.Column("Contact"),
+                                grid.Column("EmailId"),
+                                grid.Column("Company"),
+                                @*grid.Column(null, null, @<input type="hidden" name="hiddendate" value="@item.AddTime" />),*@
+ grid.Column("", header: "Password", format: @<text>@Html.TextBox("Password", "", new { @class = "form-control" })</text>),
+                @*grid.Column("", header: "Edit", format: @<text>@Html.ActionLink("Accept", "Accept", "SuperAdmin", new { onclick = "Accept('" + item.Id + "')" })</text>),
+                    grid.Column("", header: "Delete", format: @<text>@Html.ActionLink("Reject", "Reject", "SuperAdmin", new { onclick = "Reject('" + item.Id + "')" })</text>),*@
+ grid.Column("", header: "", format: @<a href="javascript:void(0)" onclick="Accept('/SuperAdmin/Accept', '@item.UserId', '@item.EmailId', @rowVal)">Accept</a>),
+                                grid.Column("", header: "", format:@<a href="javascript:void(0)" onclick="Reject('/SuperAdmin/Reject/@item.UserId', @rowVal)">Reject</a>))
+);
+            }
+        </div>
+    </div>
+</center>
+

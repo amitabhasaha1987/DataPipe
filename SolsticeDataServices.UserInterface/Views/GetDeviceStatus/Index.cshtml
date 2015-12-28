@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "GetDeviceStatus";
+    Layout = "~/Views/Shared/_Documentation.cshtml";
+}
+
+<h2>GetDeviceStatus</h2>
+
+<ul class="nav nav-pills">
+    <li><a href="#description">Description</a> </li>
+    <li><a href="#request">Request</a></li>
+    <li><a href="#response">Response</a></li>
+    <li><a href="#example">Example</a></li>
+</ul>
+
+<!-- Description -->
+<h3 id="description">Description</h3>
+<p align="justify">
+    GetDeviceStatus returns the current status of the specified device. 
+</p>
+
+<!-- Request -->
+<h3 id="request">Request</h3>
+
+<div class="assnormalbox">
+    <div class="table-responsive">
+        <div class="bs-example">
+            <table class="table table-hover dashtable table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th> Name </th>
+                        <th> Description </th>
+                        <th> Required </th>
+                    </tr>
+                    <tr>
+                        <td> AccessKey </td>
+                        <td> The AccessKey for your user account. </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> Action </td>
+                        <td> GetDeviceStatus </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> LogicalDeviceId </td>
+                        <td> The logical device identifier from <a href="/AddLogicalDevice">AddLogicalDevice</a>. </td>
+                        <td> Yes </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Response -->
+<h3 id="response"> Response</h3>
+
+<div class="assnormalbox">
+    <div class="table-responsive">
+        <div class="bs-example">
+            <table class="table table-hover dashtable table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th> Code </th>
+                        <th> Name </th>
+                        <th> Description </th>
+                    </tr>
+                    <tr>
+                        <td> 200 </td>
+                        <td> Success </td>
+                        <td> Indicates that the request is successful. </td>
+                    </tr>
+                    <tr>
+                        <td> 400 </td>
+                        <td> InvalidParameter </td>
+                        <td> Indicates that a request parameter does not comply with the associated constraints. </td>
+                    </tr>
+                    <tr>
+                        <td> 401 </td>
+                        <td> Unauthorized </td>
+                        <td> Indicates that the user has been denied access to the requested resource. </td>
+                    </tr>
+                    <tr>
+                        <td> 500 </td>
+                        <td> InternalError </td>
+                        <td> Indicates an internal service error. </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- Image -->
+<div class="pull-right">
+    <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+</div>
+
+
+<div class="tab-img"><img src="images/GetDeviceStatus.png" alt=""></div>
+
+ <!-- Example -->
+<h3 id="example">Example</h3>
+
+<p>Request</p>
+<pre>https://solstice.tersosolutions.com/v1.5/application/?
+    AccessKey=MyAccessKey
+    &amp;Action=GetDeviceStatus
+    &amp;LogicalDeviceId=MyLogicalDeviceId</pre>
+
+<p>Response</p>
+<pre> &lt;Solstice xmlns="http://solstice.TersoSolutions.com/v1.5/ConfigureResponse"&gt;
+        &lt;Header/&gt;
+            &lt;GetDeviceStatusResponse&gt;
+            &lt;MetricList&gt;
+                &lt;Metric Name="online" Value="true" /&gt;
+            &lt;/MetricList&gt;
+        &lt;/GetDeviceStatusResponse&gt;
+    &lt;/Solstice&gt;
+
+</pre>

@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = @ViewBag.Title;
+    Layout = "~/Views/Shared/_External.cshtml";
+}
+
+<style type="text/css">
+    .tab-img img {
+        max-width: 800px;
+    }
+</style>
+
+<script src="~/Scripts/jquery.zoom-min.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('#Menu li a').each(function () {
+            var AnchorVal = jQuery(this).html();
+            var Querystring = location.href.split('/');
+            var len = Querystring.length - 1;
+            var Page = Querystring[len];
+            if (AnchorVal == Page) {
+                jQuery(this).parent().addClass('active');
+            }
+        });
+        $('.tab-img img').wrap('<span style="display: inline-block;"></span>').css('display', 'block').parent().zoom({
+            on: 'click',
+            icon: false
+        });
+    });
+</script>
+
+<!--slider area start-->
+<div class="inner-slider-area">
+    <div class="container">
+        <div class="inner-text-slide">
+            <h1>Documentation</h1>
+        </div>
+    </div>
+</div>
+<!--body area start-->
+
+<section class="container">
+    <div class="maindocinnerpan">
+        <div class="row">
+            @{ Html.RenderPartial("~/Views/Shared/Menu.cshtml"); }
+            <div class="col-lg-9 col-md-9 col-sm-9">
+                <div class="tab-content">
+                    <div class="tab-pane active">
+                        <div class="tab-content-area">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "CommandCompletionEvent";
+    Layout = "~/Views/Shared/_Documentation.cshtml";
+}
+
+<h2>CommandCompletionEvent</h2>
+<ul class="nav nav-pills">
+    <li><a href="#description">Description</a> </li>
+    <li><a href="#request">Event Schema</a></li>
+    <li><a href="#example">Example</a></li>
+</ul>
+
+<!-- Description -->
+<h3 id="description">Description</h3>
+<p>
+    CommandCompletionEvent is published when a command has been completed on a device. The CommandCompletionEvent will
+    include any output parameters, exceptions and device extensions for completing the command.
+</p>
+
+<!-- Event Schema -->
+<h3 id="request">Event Schema</h3>
+<div class="pull-left">
+    <span class="label label-info">Heads up!</span> Click the image to zoom!
+</div>
+<div class="pull-right">
+    <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+</div>
+
+<div class="tab-img">
+    <img src="images/CommandCompletionEvent.png" alt="">
+</div>
+
+<!-- Example -->
+<h3 id="example">Example</h3>
+<p>Published CommandCompletionEvent for <a href="/GetConfigValuesCommand">GetConfigValuesCommand</a></p>
+<pre>
+    &lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.0/CommandCompletionEvent"&gt;
+        &lt;Header EventId="4d06e13d-25a8-4dd7-b0e9-79d0aa91add0" EventTime="2012-09-29T20:28:00Z"
+         ReceivedTime="2012-09-29T20:28:03Z"/&gt;
+        &lt;CommandCompletionEvent CommandId="b08f13bf-f5fc-4f2e-a49a-d8632f1415bf"&gt;
+            &lt;OutputParameterList&gt;
+                &lt;OutputParameter Name="IP" Value="10.6.20.241"/&gt;
+                &lt;OutputParameter Name="Subnet" Value="255.255.255.0"/&gt;
+                &lt;OutputParameter Name="Gateway" Value="10.6.10.1"/&gt;
+            &lt;/OutputParameterList&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;/CommandCompletionEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+<p>Published CommandCompletionEvent for <a href="/GetEPCListCommand">GetEPCListCommand</a></p>
+<pre>
+    &lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.0/CommandCompletionEvent"&gt;
+        &lt;Header EventId="b94622b7-a24d-40a9-a247-fd605051801b" EventTime="2012-09-30T20:28:00Z" 
+         ReceivedTime="2012-09-30T20:28:03Z"/&gt;
+        &lt;CommandCompletionEvent CommandId="532baa22-7349-4c27-8c98-6c8209511650"&gt;
+            &lt;OutputParameterList&gt;
+                &lt;OutputParameter Name="EPC" Value="0909A62B1C07008430001022" /&gt;
+                &lt;OutputParameter Name="EPC" Value="0909A62B1C07008430001023" /&gt;			
+                &lt;OutputParameter Name="EPC" Value="0909A62B1C07008430001024" /&gt;			
+                &lt;OutputParameter Name="EPC" Value="0909A62B1C07008430001025" /&gt;
+                &lt;OutputParameter Name="EPC" Value="0909A62B1C07008430001026" /&gt;			
+                &lt;OutputParameter Name="EPC" Value="0909A62B1C07008430001027" /&gt;			
+            &lt;/OutputParameterList&gt;
+            &lt;ExceptionList /&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;/CommandCompletionEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+<p>Published CommandCompletionEvent for <a href="/ResetCommand">ResetCommand</a></p>
+<pre>
+    &lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.0/CommandCompletionEvent"&gt;
+        &lt;Header EventId="5910078b-fc25-48c1-aee2-3744e3219a3d" EventTime="2012-09-29T20:28:00Z"
+         ReceivedTime="2012-09-29T20:28:03Z"/&gt;
+        &lt;CommandCompletionEvent CommandId="0234fd0e-bdd7-41e7-8abb-6a728e401aa3"&gt;
+            &lt;OutputParameterList/&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;/CommandCompletionEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+<p>Published CommandCompletionEvent for <a href="/SetConfigValuesCommand">SetConfigValuesCommand</a></p>
+<pre>
+    &lt;Solstice xmlns="http://Solstice.TersoSolutions.com/v1.0/CommandCompletionEvent"&gt;
+        &lt;Header EventId="34dba74f-6d7c-4bdd-b29c-72bd6edb15a8" EventTime="2012-09-29T20:28:00Z"
+         ReceivedTime="2012-09-29T20:28:03Z"/&gt;
+        &lt;CommandCompletionEvent CommandId="af6c6b15-08d6-45fb-9fc8-b26fd0280c26"&gt;
+            &lt;OutputParameterList/&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;/CommandCompletionEvent&gt;
+    &lt;/Solstice&gt;
+</pre>
+

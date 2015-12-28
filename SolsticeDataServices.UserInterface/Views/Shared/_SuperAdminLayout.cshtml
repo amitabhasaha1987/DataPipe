@@ -1,0 +1,148 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>@ViewBag.Title - Solstice Data Services™</title>
+
+
+
+
+    <link type="text/css" rel="stylesheet" href="@Url.Content("http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700,900")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/bootstrap.min.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/style.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/bootstrap-select.css")" />
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/custom.css")" />
+
+    <style type="text/css">
+        .menu li a {
+            background: none;
+        }
+    </style>
+
+
+
+    @RenderSection("css", required: false)
+
+
+
+
+</head>
+<body>
+    <!--loader start-->
+    <div id="DivProgress" class="ProgressDiv" style="display: none;">
+        <div class="parentProgressDiv">
+            <img src="~/images/ajax-loader.gif" alt="Loading...." />
+        </div>
+    </div>
+    <!--loader end-->
+    <!--header start-->
+    <div class="dashheader">
+        <div class="container">
+            <div class="header">
+                <nav role="navigation" class="navbar navbar-default navtop">
+                    <div class="navbar-header">
+                        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="/Dashboard"><img src="~/images/adminlogo.png" alt="Solstice Medical" title="Solstice Medical"></a>
+                    </div>
+                    <div class="navbar-collapse menu collapse" id="navbar" aria-expanded="false" style="height: 1px;">
+                        <ul class="nav navbar-nav navbar-right">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li><a href="javascript:void(0)">Welcome @User.Identity.Name</a></li>
+                                <li class="top-logout"><a onclick="LoggingOut();">Logout</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                    <!--/.container-fluid -->
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!--header end-->
+    @RenderBody()
+    <footer>
+        <div class="container">
+            <div class="footer-area">
+                <div class="so-iconarea">
+                    <div class="social-iocn gplusicon"></div>
+                    <div class="social-iocn twittericon"></div>
+                    <div class="social-iocn fbicon"></div>
+                </div>
+                <div class="clear"></div>
+                <div class="footer-link innerfootlink">
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Sign Up</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li style="background-image:none;"><a href="#">Tools</a></li>
+                    </ul>
+                    <p>© Solstice Data™ 2014. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="boxes">
+        <div id="dialog" class="window">
+            <a href="#" class="closebtn">Close it</a>
+            <div class="logindetails">
+                <h3>Sign In</h3>
+                <input type="text" name="" id="" value="Username" placeholder="Username" class="popinputbox" onblur="if(this.value == '') { this.value='Username'}" onfocus="if (this.value == 'Username') {this.value=''}" />
+                <input type="text" name="" id="" value="Email" placeholder="Email" class="popinputbox" onblur="if(this.value == '') { this.value='Email'}" onfocus="if (this.value == 'Email') {this.value=''}" />
+                <input type="submit" name="" id="" value="Submit" class="submitbtnpop" />
+            </div>
+        </div>
+        <!-- Mask to cover the whole screen -->
+        <div id="mask"></div>
+    </div>
+
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/custom.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.bxslider.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap-select.js")"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ajaxStart(function () {
+            $('#DivProgress').show();
+        });
+        $(document).ajaxStop(function () {
+            $('#DivProgress').hide();
+        });
+        function LoggingOut() {
+            $.ajax({
+                type: "get",
+                url: "/Index/Logout",
+                success: function () {
+                    var cookies = document.cookie.split(";");
+                    for (var i = 0; i < cookies.length; i++) {
+                        var spcook = cookies[i].split("=");
+                        document.cookie = spcook[0] + "=;expires=Thu, 21 Sep 1979 00:00:01 UTC;";
+                    }
+                    window.location.href = "/";
+                }
+            });
+        }
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

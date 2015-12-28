@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "GetConfiguration";
+    Layout = "~/Views/Shared/_Documentation.cshtml";
+}
+
+<h2>GetConfiguration</h2>
+
+<ul class="nav nav-pills">
+    <li><a href="#description">Description</a> </li>
+    <li><a href="#request">Request</a></li>
+    <li><a href="#response">Response</a></li>
+    <li><a href="#example">Example</a></li>
+</ul>
+
+<!-- Description -->
+<h3 id="description">Description</h3>
+<p align="justify">
+    GetConfiguration returns the current solstice® configuration for your application. 
+</p>
+
+<!-- Request -->
+<h3 id="request">Request</h3>
+
+<div class="assnormalbox">
+    <div class="table-responsive">
+        <div class="bs-example">
+            <table class="table table-hover dashtable table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th> Name </th>
+                        <th> Description </th>
+                        <th> Required </th>
+                    </tr>
+                    <tr>
+                        <td> AccessKey </td>
+                        <td> The AccessKey for your user account. </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> Action </td>
+                        <td> GetConfiguration </td>
+                        <td> Yes </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Response -->
+<h3 id="response"> Response</h3>
+
+<div class="assnormalbox">
+    <div class="table-responsive">
+        <div class="bs-example">
+            <table class="table table-hover dashtable table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th> Code </th>
+                        <th> Name </th>
+                        <th> Description </th>
+                    </tr>
+                    <tr>
+                        <td> 200 </td>
+                        <td> Success </td>
+                        <td> Indicates that the request is successful. </td>
+                    </tr>
+                    <tr>
+                        <td> 400 </td>
+                        <td> InvalidParameter </td>
+                        <td> Indicates that a request parameter does not comply with the associated constraints. </td>
+                    </tr>
+                    <tr>
+                        <td> 401 </td>
+                        <td> Unauthorized </td>
+                        <td> Indicates that the user has been denied access to the requested resource. </td>
+                    </tr>
+                    <tr>
+                        <td> 500 </td>
+                        <td> InternalError </td>
+                        <td> Indicates an internal service error. </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- Image -->
+<div class="pull-right">
+    <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+</div>
+
+
+<div class="tab-img"><img src="images/GetConfiguration.png" alt=""></div>
+
+ <!-- Example -->
+<h3 id="example">Example</h3>
+
+<p>Request</p>
+<pre>https://solstice.tersosolutions.com/v1.5/application/?
+    AccessKey=MyAccessKey
+    &amp;Action=GetConfiguration</pre>
+
+<p>Response</p>
+<pre>    &lt;solstice xmlns="http://solstice.TersoSolutions.com/v1.5/GetConfigurationResponse"&gt;
+        &lt;Header/&gt;
+        &lt;GetConfigurationResponse&gt;
+            &lt;LogicalDeviceList&gt;
+                &lt;LogicalDevice Region="US" DeviceSerialNumber="123" LogicalDeviceId="StockRoomCabinet1" 
+                    DeviceDefinitionId="082e3b03-2cef-4f07-83d0-7de716f67028" Health="Active" 
+                    PolicyId="9936bd67-aabf-4608-b2d8-4ec506cad644" /&gt;
+                &lt;LogicalDevice Region="EU" DeviceSerialNumber="234" LogicalDeviceId="LabFreezer1"
+                    DeviceDefinitionId="cd6e0dc8-cc3a-43fe-ba50-1598b80bc4f7" Health="Failed" /&gt;
+                &lt;LogicalDevice Region="AP" DeviceSerialNumber="345" LogicalDeviceId="ShippingRefrigerator1"
+                    DeviceDefinitionId="01b10c57-7497-4361-86c5-63d6a04f3ba4" Health="Restoring" 
+                    PolicyId="4db919fa-d3c9-4853-802d-b5154cc3177a" /&gt;
+            &lt;/LogicalDeviceList&gt;
+        &lt;/GetConfigurationResponse&gt;
+    &lt;/solstice&gt;</pre>
+

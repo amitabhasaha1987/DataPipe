@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "GetDeviceDefinitions";
+    Layout = "~/Views/Shared/_Documentation.cshtml";
+}
+
+<h2>GetDeviceDefinitions</h2>
+
+<ul class="nav nav-pills">
+    <li><a href="#description">Description</a> </li>
+    <li><a href="#request">Request</a></li>
+    <li><a href="#response">Response</a></li>
+    <li><a href="#example">Example</a></li>
+</ul>
+
+<!-- Description -->
+<h3 id="description">Description</h3>
+<p align="justify">
+    GetDeviceDefinitions returns all of the available device configurations that solstice® supports. 
+    A device definition is a unique definition for a specific device manufacturer, name of the device and its firmware version. 
+</p>
+
+
+<!-- Request -->
+<h3 id="request">Request</h3>
+
+<div class="assnormalbox">
+    <div class="table-responsive">
+        <div class="bs-example">
+            <table class="table table-hover dashtable table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th> Name </th>
+                        <th> Description </th>
+                        <th> Required </th>
+                    </tr>
+                    <tr>
+                        <td> AccessKey </td>
+                        <td> The AccessKey for your user account. </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> Action </td>
+                        <td> GetDeviceDefinitions </td>
+                        <td> Yes </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Response -->
+<h3 id="response"> Response</h3>
+
+<div class="assnormalbox">
+    <div class="table-responsive">
+        <div class="bs-example">
+            <table class="table table-hover dashtable table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th> Code </th>
+                        <th> Name </th>
+                        <th> Description </th>
+                    </tr>
+                    <tr>
+                        <td> 200 </td>
+                        <td> Success </td>
+                        <td> Indicates that the request is successful. </td>
+                    </tr>
+                    <tr>
+                        <td> 400 </td>
+                        <td> InvalidParameter </td>
+                        <td> Indicates that a request parameter does not comply with the associated constraints. </td>
+                    </tr>
+                    <tr>
+                        <td> 401 </td>
+                        <td> Unauthorized </td>
+                        <td> Indicates that the user has been denied access to the requested resource. </td>
+                    </tr>
+                    <tr>
+                        <td> 500 </td>
+                        <td> InternalError </td>
+                        <td> Indicates an internal service error. </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- Image -->
+<div class="pull-left">
+    <span class="label label-info">Heads up!</span> Click the image to zoom!
+</div>
+    <div class="pull-right">
+    <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+</div>
+
+   
+
+<div class="tab-img"><img src="images/GetDeviceDefinitions.png" alt=""></div>
+
+ <!-- Example -->
+<h3 id="example">Example</h3>
+
+<p>Request</p>
+<pre>https://solstice.tersosolutions.com/v1.5/application/?
+    AccessKey=MyAccessKey
+    &amp;Action=GetDeviceDefinitions</pre>
+
+<p>Response</p>
+<pre>  &lt;solstice xmlns="http://solstice.TersoSolutions.com/v1.5/GetDeviceDefinitionResponse"&gt;
+        &lt;Header/&gt;
+        &lt;GetDeviceDefinitionsResponse&gt;
+            &lt;DeviceDefinitionList&gt;
+                &lt;DeviceDefinition Manufacturer="Terso Solutions" 
+                                  FirmwareVersion="3.3" 
+                                  Id="d5ac4f89-7113-49e4-8509-29fe6b0fd5c7" 
+                                  Name="TS001 - FRE, 5.0, Micro, US" 
+                                  URL="http://www.tersosolutions.com/firmware/v3.3.zip"&gt;
+                    &lt;CommandList ReadTagDataCommand="false" 
+                                 ResetCommand="true" 
+                                 SetConfigValuesCommand="true" 
+                                 UnlockCommand="false" 
+                                 WriteTagDataCommand="false" 
+                                 LockCommand="false" 
+                                 KillCommand="false" 
+                                 GetConfigValuesCommand="true" 
+                                 UpdateFirmwareCommand="true" 
+                                 GetEPCListCommand="true"&gt;
+                        &lt;DeviceSpecificCommandList&gt;
+                            &lt;DeviceSpecificCommand CommandName="UpdatePasses"/&gt;
+                            &lt;DeviceSpecificCommand CommandName="GetPasses"/&gt;
+                            &lt;DeviceSpecificCommand CommandName="Lockdown"/&gt;
+                        &lt;/DeviceSpecificCommandList&gt;
+                        &lt;ConfigParameterList&gt;
+                            &lt;ConfigParameter Type="Int" Name="AggregateEventScanCount"/&gt;
+                            &lt;ConfigParameter Type="Int" Name="AggregateEventScanTime" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="CommandPollInterval" /&gt;
+                            &lt;ConfigParameter Type="String" Name="DNS" /&gt;
+                            &lt;ConfigParameter Type="String" Name="Gateway" /&gt;
+                            &lt;ConfigParameter Type="String" Name="IP" /&gt;
+                            &lt;ConfigParameter Type="String" Name="SolsticeDeviceUrl" /&gt;
+                            &lt;ConfigParameter Type="String" Name="LogEntryLevel" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="ObjectEventScanCount" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="ObjectEventScanTime" /&gt;
+                            &lt;ConfigParameter Type="String" Name="Subnet" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="Antenna1RxSensitivity" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="Antenna1TxPower" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="Antenna2RxSensitivity" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="Antenna2TxPower" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="Antenna3RxSensitivity" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="Antenna3TxPower" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="Antenna4RxSensitivity" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="Antenna4TxPower" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="DoorOpenTimeLimit" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="LockdownHighTemp" /&gt;
+                            &lt;ConfigParameter Type="Bool" Name="LockdownOnACPowerFailure" /&gt;
+                            &lt;ConfigParameter Type="Bool" Name="LockdownOnReaderFailure" /&gt;
+                            &lt;ConfigParameter Type="Bool" Name="LockdownOnHighTemp" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="LogEntryEventHighTemp" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="LogEntryEventLowTemp" /&gt;
+                            &lt;ConfigParameter Type="Int" Name="NumberOfAntennas" /&gt;
+                        &lt;/ConfigParameterList&gt;
+                    &lt;/CommandList&gt;
+                    &lt;SensorReadingMeasureList&gt;
+                        &lt;SensorReadingMeasure Name="TemperatureA" UnitOfMeasure="F" /&gt;
+                        &lt;SensorReadingMeasure Name="TemperatureB" UnitOfMeasure="C" /&gt;
+                    &lt;/SensorReadingMeasureList&gt;
+                &lt;/DeviceDefinition&gt;
+            &lt;/DeviceDefinitionList&gt;
+        &lt;/GetDeviceDefinitionsResponse&gt;
+    &lt;/solstice&gt;
+
+</pre>

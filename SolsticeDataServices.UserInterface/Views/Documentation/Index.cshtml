@@ -1,0 +1,837 @@
+﻿@{
+    ViewBag.Title = "Solstice Documentation";
+    Layout = "~/Views/Shared/_External.cshtml";
+}
+
+<!--slider area start-->
+<div class="inner-slider-area">
+    <div class="container">
+        <div class="inner-text-slide">
+            <h1>Documentation</h1>
+        </div>
+    </div>
+</div>
+<!--slider area end-->
+<!--body area start-->
+<section class="container">
+    <div class="maindocinnerpan">
+        <div class="row">
+            @*<div class="col-lg-3 col-md-3 col-sm-3">
+                <ul class="nav nav-tabs categories col-lg-12">
+                    <li class="cat-heading"><h3>Commands</h3></li>
+                    <li><a href="#tab100" data-toggle="tab">DeviceSpecificCommand</a></li>
+
+                    <li><a href="#tab2" data-toggle="tab">GetConfigValuesCommand</a></li>
+                    <li><a href="#tab3" data-toggle="tab">GetEPCListCommand</a></li>
+                    <li><a href="#tab4" data-toggle="tab">ResetCommand</a></li>
+                    <li><a href="#tab5" data-toggle="tab">SetConfigValuesCommand</a></li>
+                    <li class="no-border"><a href="#tab6" data-toggle="tab">UpdateFirmwareCommand</a></li>
+
+                    <li class="cat-heading"><h3>Configuration</h3></li>
+                    <li><a href="#tab7" data-toggle="tab">AddDeviceToPolicy</a></li>
+                    <li><a href="#tab8" data-toggle="tab">AddLogicalDevice</a></li>
+                    <li><a href="#tab9" data-toggle="tab">AddPolicy</a></li>
+                    <li><a href="#tab10" data-toggle="tab">GetConfiguration</a></li>
+                    <li><a href="#tab11" data-toggle="tab">GetDeviceDefinitions</a></li>
+                    <li><a href="#tab12" data-toggle="tab">GetPolicies</a></li>
+                    <li><a href="#tab13" data-toggle="tab">RemoveDeviceFromPolicy</a></li>
+                    <li><a href="#tab14" data-toggle="tab">RemoveLogicalDevice</a></li>
+                    <li><a href="#tab15" data-toggle="tab">RemovePolicy</a></li>
+                    <li><a href="#tab16" data-toggle="tab">Messaging</a></li>
+                    <li><a href="#tab17" data-toggle="tab">GetEvents</a></li>
+                    <li><a href="#tab18" data-toggle="tab">RemoveEvents</a></li>
+                    <li><a href="#tab19" data-toggle="tab">Events</a></li>
+                    <li><a href="#tab20" data-toggle="tab">AggregateEvent</a></li>
+                    <li><a href="#tab21" data-toggle="tab">CommandCompletionEvent</a></li>
+                    <li><a href="#tab22" data-toggle="tab">CommandQueuedEvent</a></li>
+                    <li><a href="#tab23" data-toggle="tab">DeviceFailureEvent</a></li>
+                    <li><a href="#tab24" data-toggle="tab">DeviceRestoreEvent</a></li>
+                    <li><a href="#tab25" data-toggle="tab">HeartbeatEvent</a></li>
+                    <li><a href="#tab26" data-toggle="tab">LogEntryEvent</a></li>
+                    <li><a href="#tab27" data-toggle="tab">LogicalDeviceAddedEvent</a></li>
+                    <li><a href="#tab28" data-toggle="tab">LogicalDeviceRemovedEvent</a></li>
+                    <li><a href="#tab29" data-toggle="tab">ObjectEvent</a></li>
+                    <li class="no-border"><a href="#tab30" data-toggle="tab">SensorReadingEvent</a></li>
+
+                    <li class="cat-heading"><h3>Devices</h3></li>
+                    <li class="no-border"><a href="#tab31" data-toggle="tab">RFID Enclosures</a></li>
+
+                </ul>
+            </div>*@<!-- col -->
+
+        @{ Html.RenderPartial("~/Views/Shared/Menu.cshtml"); }
+
+            <div class="col-lg-9 col-md-9 col-sm-9">
+                <div class="tab-content">
+
+
+                    <div class="tab-pane active" id="tab1">
+                        <div class="tab-content-area">
+                            <ul class="nav nav-pills">
+                                <li><a href="#description">Description</a> </li>
+                                <li><a href="#commands">Commands</a></li>
+                                <li><a href="#configuration">Configuration</a></li>
+                                <li><a href="#events">Events</a></li>
+                                <li><a href="#devices">Devices</a></li>
+                            </ul>
+
+                            <!-- Description -->
+                            <h3 id="description">Description</h3>
+                            <p>Use the Solstice Data™ REST API to queue commands for your device or configure your application. Use GetEvents to begin receiving your Solstice Data™ events.</p>
+
+                            <p>For developers just getting started, we recommend going through the Solstice Data Developers Guide and logging in to the Admin Console to add a device and simulate events. When you are ready to develop, use the Solstice Data™ tools and open source projects to aid you in your journey.</p>
+
+
+                            <!-- Commands -->
+                            <h3 id="commands">Commands</h3>
+                            <p>Solstice Data™ let's you queue commands for your RFID devices. Devices can be placed on any internet based network; therefore, Solstice Data™ will handle all the complexity of coordinating the delivery, execution and returning the results of your command request.</p>
+
+                            <div class="commend-text">
+                                <p><strong>To Execute a Command</strong></p>
+
+                                <ul>
+                                    <li>Your application calls the Solstice Data™ REST API with a command request.</li>
+                                    <li>The Solstice Data™ REST API returns to you a unique CommandId.</li>
+                                    <li>The Solstice Data™ REST API queues the command with the closest device web server.</li>
+                                    <li>The device polls the edge device web server for any new commands and pops your command.</li>
+                                    <li>The device executes your command.</li>
+                                    <li>The device sends a CommandCompletionEvent for your command to the edge device web server</li>
+                                    <li>The edge device web server sends the event to Solstice Data™</li>
+                                    <li>GetEvents recieves the event from your Solstice Data™ topic</li>
+                                    <li>Your application processes the event based on your business rules</li>
+                                </ul>
+
+                                <div class="more-info">
+                                    <p>
+                                        <strong>More Info!</strong> <em>
+                                            CommandId is the unique identifier to correlate your command request with the resulting <br>
+                                            CommandCompletionEvent
+                                        </em>
+                                    </p>
+                                </div>
+
+                                <div class="tab-img"><img src="images/commendImg.png" alt=""></div>
+
+                            </div>
+
+                            <!-- Configuration -->
+                            <h3 id="configuration">Configuration</h3>
+
+                            <p>At any time you may reconfigure your Solstice Data™ application to add or remove devices, get your current application configuration, determine what types of devices are available to add or keep your devices configured to meet a policy.</p>
+
+                            <p>
+                                <strong>To Configure Your Application</strong><br>
+                                Your application calls the Solstice Data™ REST API with a configuration request<br>
+                                The Solstice Data™ REST API configures your application<br>
+                                The Solstice Data™ REST API returns a ConfigureResponse to your application
+                            </p>
+
+                            <div class="tab-img"><img src="images/configurationImg.png" alt=""></div>
+
+
+                            <!-- Events -->
+                            <h3 id="events">Events</h3>
+
+                            <p>Solstice Data™ automatically publishes device and system events to your application.</p>
+
+                            <p>
+                                <strong>To Receive An Event</strong><br>
+                                The device or the Solstice Data™ REST API generates an event<br>
+                                The Solstice Data™ REST API publishes the event<br>
+                                GetEvents recieves the event from your Solstice Data™ topic
+                            </p>
+
+                            <div class="tab-img"><img src="images/eventsImg.png" alt=""></div>
+
+
+
+                            <!-- Devices -->
+                            <h3 id="devices">Devices</h3>
+
+                            <p>Solstice Data™ supports multiple RFID device types and abstracts the type of device from your application. Therefore you can configure, command and receive events from any device using the same code. Device metadata is managed through DeviceDefintion which allows devices to define the commands and config values it supports in Solstice Data™. Device types that support more than just the standard commands can define their own commands using the DeviceSpecificCommand. Finally devices that require custom event data can publish their event data with the standard events using the DeviceExtension elements found in the standard event schemas.</p>
+
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="tab-content-area">
+                            <h2>GetConfigValuesCommand</h2>
+
+                            <ul class="nav nav-pills">
+                                <li><a href="#execution2">Execution</a> </li>
+                                <li><a href="#description2">Description</a> </li>
+                                <li><a href="#request2">Request</a></li>
+                                <li><a href="#response2">Response</a></li>
+                                <li><a href="#example2">Example</a></li>
+                            </ul>
+
+                            <!-- Execution -->
+                            <h3 id="execution2">Execution</h3>
+
+                            <div class="assnormalbox">
+                                <div class="table-responsive">
+                                    <div class="bs-example">
+                                        <table class="table table-hover dashtable table table-striped table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <th> Online  </th>
+                                                    <th> Offline  </th>
+                                                </tr>
+                                                <tr>
+                                                    <td> Immediate Execution, Immediate and Published Results  </td>
+                                                    <td> Queued Execution, Published Results  </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- description -->
+                            <h3 id="description2">Description</h3>
+                            <p> GetConfigValuesCommand instructs the device to return its current configuration values. </p>
+
+
+                            <!-- Request -->
+                            <h3 id="request2">Request</h3>
+                            <div class="assnormalbox">
+                                <div class="table-responsive">
+                                    <div class="bs-example">
+                                        <table class="table table-hover dashtable table table-striped table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <th> Name  </th>
+                                                    <th> Description  </th>
+                                                    <th> Required  </th>
+                                                </tr>
+                                                <tr>
+                                                    <td> AccessKey  </td>
+                                                    <td> GetConfigValuesCommand  </td>
+                                                    <td> Yes  </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Action  </td>
+                                                    <td> The AccessKey for your user account.  </td>
+                                                    <td> Yes  </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> LogicalDeviceId   </td>
+                                                    <td> The logical device identifier from <a>AddLogicalDevice</a>.   </td>
+                                                    <td> Yes  </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Parameters   </td>
+                                                    <td> The parameter names you want the values returned for. Parameter names should be split by an underscore(_). If the Parameters argument is left null all parameters are returned.    </td>
+                                                    <td> No   </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info">
+                                <strong>More Info!</strong> Complete documentation on a <a>DeviceDefinition's</a> parameters can be found on
+                                its <a href="/documentation/Enclosures">Device</a> page.
+                            </div>
+
+                            <!-- Response -->
+                            <h3 id="response2"> Response</h3>
+
+                            <div class="assnormalbox">
+                                <div class="table-responsive">
+                                    <div class="bs-example">
+                                        <table class="table table-hover dashtable table table-striped table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <th> Code </th>
+                                                    <th> Name </th>
+                                                    <th> Description </th>
+                                                </tr>
+                                                <tr>
+                                                    <td> 200 </td>
+                                                    <td> Success </td>
+                                                    <td> Indicates that the request is successful. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 400 </td>
+                                                    <td> InvalidParameter </td>
+                                                    <td> Indicates that a request parameter does not comply with the associated constraints. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 401 </td>
+                                                    <td> Unauthorized </td>
+                                                    <td> Indicates that the user has been denied access to the requested resource. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 500 </td>
+                                                    <td> InternalError </td>
+                                                    <td> Indicates an internal service error. </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Image -->
+                            <div class="pull-right">
+                                <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+                            </div>
+
+                            <div class="tab-img"><img src="images/GetConfigValuesCommand.png" alt=""></div>
+
+                            <!-- Example -->
+                            <h3 id="example2">Example</h3>
+
+                            <p>Request</p>
+                            <pre>https://SolsticeData.tersosolutions.com/v1.5/application/?
+AccessKey=MyAccessKey
+&amp;Action=GetConfigValuesCommand
+&amp;LogicalDeviceId=MyLogicalDeviceId
+&amp;Parameters=IP_SubNet_Gateway
+                            </pre>
+                            <p>Response </p>
+                            <pre> &lt;Solstice Data™ xmlns="http://SolsticeData.TersoSolutions.com/v1.5/CommandResponse"&gt;
+ &lt;Header/&gt;
+ &lt;CommandResponse CommandId="862bef90-c7f9-43cd-bdcc-1eb1cf41fa7b" &gt;
+ &lt;OutputParameterList&gt;
+     &lt;OutputParameter Name="gateway" Value="10.6.10.1"/&gt;
+     &lt;OutputParameter Name="ip" Value="10.6.20.241"/&gt;
+     &lt;OutputParameter Name="subnet" Value="255.255.255.0"/&gt;
+ &lt;/OutputParameterList&gt;
+ &lt;ExceptionList/&gt;
+ &lt;DeviceExtensionList /&gt;
+ &lt;/CommandResponse&gt;
+ &lt;/Solstice Data&gt;
+                            </pre>
+                            <p>Published CommandQueuedEvent  </p>
+                            <pre>&lt;Solstice Data xmlns="http://Jetstream.TersoSolutions.com/v1.5/CommandQueuedEvent"&gt;
+&lt;Header EventId="d58ab84f-36e7-497f-b097-66f615b633cd" EventTime="2012-10-05T19:25:41Z"
+LogicalDeviceId="MyLogicalDeviceId" /&gt;
+&lt;CommandQueuedEvent CommandId="862bef90-c7f9-43cd-bdcc-1eb1cf41fa7b"
+   CommandName="GetConfigValuesCommand" UserName="MyUserName"&gt;
+      &lt;ParameterList&gt;
+           &lt;Parameter Name="Parameter1" Value="gateway" /&gt;
+           &lt;Parameter Name="Parameter2" Value="ip" /&gt;
+           &lt;Parameter Name="Parameter3" Value="subnet" /&gt;
+      &lt;/ParameterList&gt;
+&lt;/CommandQueuedEvent&gt;
+&lt;/Solstice Data&gt;
+
+
+</pre>
+                            <p>Published CommandCompletionEvent </p>
+                            <pre> &lt;Solstice Data xmlns="http://Jetstream.TersoSolutions.com/v1.0/CommandCompletionEvent"&gt;
+        &lt;Header EventId="4d06e13d-25a8-4dd7-b0e9-79d0aa91add0" EventTime="2012-10-05T20:01:41Z"
+         ReceivedTime="2012-10-05T20:01:43Z"/&gt;
+        &lt;CommandCompletionEvent CommandId="862bef90-c7f9-43cd-bdcc-1eb1cf41fa7b"&gt;
+            &lt;OutputParameterList&gt;
+                &lt;OutputParameter Name="gateway" Value="10.6.10.1"/&gt;
+                &lt;OutputParameter Name="ip" Value="10.6.20.241"/&gt;
+                &lt;OutputParameter Name="subnet" Value="255.255.255.0"/&gt;
+            &lt;/OutputParameterList&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;/CommandCompletionEvent&gt;
+    &lt;/Solstice Data&gt;
+
+
+</pre>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab3">
+                        <div class="tab-content-area">
+                            <h2>GetEPCListCommand</h2>
+
+                            <ul class="nav nav-pills">
+                                <li><a href="#execution3">Execution</a> </li>
+                                <li><a href="#description3">Description</a> </li>
+                                <li><a href="#request3">Request</a></li>
+                                <li><a href="#response3">Response</a></li>
+                                <li><a href="#example3">Example</a></li>
+                            </ul>
+
+                            <!-- Execution -->
+                            <h3 id="execution3">Execution</h3>
+
+                            <div class="assnormalbox">
+                                <div class="table-responsive">
+                                    <div class="bs-example">
+                                        <table class="table table-hover dashtable table table-striped table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <th> Online  </th>
+                                                    <th> Offline  </th>
+                                                </tr>
+                                                <tr>
+                                                    <td> Immediate Execution, Published Results </td>
+                                                    <td> Queued Execution, Published Results  </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- description -->
+                            <h3 id="description3">Description</h3>
+                            <p> GetEPCListCommand instructs the device to scan for RFID tags.  </p>
+
+                            <!-- Request -->
+                            <h3 id="request3">Request</h3>
+                            <div class="assnormalbox">
+                                <div class="table-responsive">
+                                    <div class="bs-example">
+                                        <table class="table table-hover dashtable table table-striped table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <th> Name  </th>
+                                                    <th> Description  </th>
+                                                    <th> Required  </th>
+                                                </tr>
+                                                <tr>
+                                                    <td> AccessKey  </td>
+                                                    <td> The AccessKey for your user account.   </td>
+                                                    <td> Yes  </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Action  </td>
+                                                    <td> GetEPCListCommand  </td>
+                                                    <td> Yes  </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> LogicalDeviceId   </td>
+                                                    <td> The logical device identifier from <a>AddLogicalDevice</a>.   </td>
+                                                    <td> Yes  </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Response -->
+                            <h3 id="response3"> Response</h3>
+
+                            <div class="assnormalbox">
+                                <div class="table-responsive">
+                                    <div class="bs-example">
+                                        <table class="table table-hover dashtable table table-striped table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <th> Code </th>
+                                                    <th> Name </th>
+                                                    <th> Description </th>
+                                                </tr>
+                                                <tr>
+                                                    <td> 200 </td>
+                                                    <td> Success </td>
+                                                    <td> Indicates that the request is successful. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 400 </td>
+                                                    <td> InvalidParameter </td>
+                                                    <td> Indicates that a request parameter does not comply with the associated constraints. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 401 </td>
+                                                    <td> Unauthorized </td>
+                                                    <td> Indicates that the user has been denied access to the requested resource. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 500 </td>
+                                                    <td> InternalError </td>
+                                                    <td> Indicates an internal service error. </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Image -->
+                            <div class="pull-right">
+                                <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+                            </div>
+
+                            <div class="tab-img"><img src="images/GetEPCListCommand.png" alt=""></div>
+
+                            <!-- Example -->
+                            <h3 id="example3">Example</h3>
+
+                            <p>Request</p>
+                            <pre>https://SolsticeData.tersosolutions.com/v1.5/application/?
+AccessKey=MyAccessKey
+&amp;Action=GetEPCListCommand
+&amp;&LogicalDeviceId=MyLogicalDeviceId
+</pre>
+                            <p>Response</p>
+                            <pre>&lt;SolsticeData xmlns="http://SolsticeData.TersoSolutions.com/v1.5/CommandResponse"&gt;
+        &lt;Header/&gt;
+        &lt;CommandResponse CommandId="76b6b2db-fe29-4b9d-a49e-b141c72fe422"  &gt;
+            &lt;OutputParameterList /&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;CommandResponse/&gt;
+    &lt;/SolsticeData&gt;
+</pre>
+                            <p>Published CommandQueuedEvent </p>
+                            <pre> &lt;SolsticeData xmlns="http://SolsticeData.TersoSolutions.com/v1.5/CommandQueuedEvent"&gt;
+        &lt;Header EventId="97d52fd6-bd53-4388-948a-307b5f4ccbfe" EventTime="2012-09-29T20:28:00Z"
+         LogicalDeviceId="MyLogicalDeviceId" /&gt;
+        &lt;CommandQueuedEvent CommandId="76b6b2db-fe29-4b9d-a49e-b141c72fe422"
+         CommandName="GetEPCListCommand" UserName="MyUserName"&gt;
+            &lt;ParameterList /&gt;
+        &lt;/CommandQueuedEvent&gt;
+    &lt;/SolsticeData&gt;
+</pre>
+                            <p>Published CommandCompletionEvent</p>
+                            <pre>&lt;SolsticeData xmlns="http://SolsticeData.TersoSolutions.com/v1.0/CommandCompletionEvent"&gt;
+        &lt;Header EventId="50620b8f-2a58-4b83-865f-e0bebc903d6d" EventTime="2012-09-29T20:34:14Z" 
+         ReceivedTime="2012-09-29T20:34:15Z"/&gt;
+        &lt;CommandCompletionEvent CommandId="76b6b2db-fe29-4b9d-a49e-b141c72fe422"&gt;
+            &lt;OutputParameterList&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F3" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F4" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F5" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F6" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F7" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F8" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD8915004C9259851F0000F9" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BA" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BB" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BC" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BD" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BE" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BF" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BG" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BH" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BI" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BJ" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BK" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BL" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BM" /&gt;                
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BN" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BO" /&gt;
+                &lt;OutputParameter Name="EPC" Value="AD892700497C97F81F0000BP" /&gt;
+            &lt;/OutputParameterList&gt;
+            &lt;ExceptionList/&gt;
+            &lt;DeviceExtensionList /&gt;
+        &lt;/CommandCompletionEvent&gt;
+    &lt;/SolsticeData&gt;
+
+</pre>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab4">
+                        <div class="tab-content-area">
+                            <h4>ResetCommand</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab5">
+                        <div class="tab-content-area">
+                        </div>
+                    <div class="tab-pane" id="tab6">
+                        <div class="tab-content-area">
+                        </div>
+                    <div class="tab-pane" id="tab7">
+                        <div class="tab-content-area">
+                            <h2>AddDeviceToPolicy</h2>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab8">
+                        <div class="tab-content-area">
+                            <h4>AddLogicalDevice</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab9">
+                        <div class="tab-content-area">
+                            <h4>AddPolicy</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab10">
+                        <div class="tab-content-area">
+                            <h4>GetConfiguration</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab11">
+                        <div class="tab-content-area">
+                            <h4>GetDeviceDefinitions</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab12">
+                        <div class="tab-content-area">
+                            <h4>GetPolicies</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab13">
+                        <div class="tab-content-area">
+                            <h4>RemoveDeviceFromPolicy</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab14">
+                        <div class="tab-content-area">
+                            <h4>RemoveLogicalDevice</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab15">
+                        <div class="tab-content-area">
+                            <h4>RemovePolicy</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab16">
+                        <div class="tab-content-area">
+                            <h4>Messaging</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab17">
+                        <div class="tab-content-area">
+                            <h4>GetEvents</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab18">
+                        <div class="tab-content-area">
+                            <h4>RemoveEvents</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab19">
+                        <div class="tab-content-area">
+                            <h4>Events</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab20">
+                        <div class="tab-content-area">
+                            <h4>AggregateEvent</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab21">
+                        <div class="tab-content-area">
+                            <h4>CommandCompletionEvent</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab22">
+                        <div class="tab-content-area">
+                            <h4>CommandQueuedEvent</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab23">
+                        <div class="tab-content-area">
+                            <h4>DeviceFailureEvent</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab24">
+                        <div class="tab-content-area">
+                            <h4>DeviceRestoreEvent</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab25">
+                        <div class="tab-content-area">
+                            <h4>HeartbeatEvent</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab26">
+                        <div class="tab-content-area">
+                            <h4>LogEntryEvent</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab27">
+                        <div class="tab-content-area">
+                            <h4>LogicalDeviceAddedEvent</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab28">
+                        <div class="tab-content-area">
+                            <h4>LogicalDeviceRemovedEvent</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab29">
+                        <div class="tab-content-area">
+                            <h4>ObjectEvent</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab30">
+                        <div class="tab-content-area">
+                            <h4>SensorReadingEvent</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab31">
+                        <div class="tab-content-area">
+                            <h4>RFID Enclosures</h4>
+                            <p>Content Coming Soon</p>
+                        </div>
+                    </div>
+
+                    <div id="tab100" class="tab-pane">
+                        <div class="tab-content-area">
+
+                            <h2>DeviceSpecificCommand</h2>
+
+                            <ul class="nav nav-pills">
+                                <li><a href="#description">Description</a> </li>
+                                <li><a href="#request">Request</a></li>
+                                <li><a href="#response">Response</a></li>
+                                <li><a href="#example">Example</a></li>
+                            </ul>
+
+                            <!-- Description -->
+                            <h3 id="description">Description</h3>
+                            <p>
+                                DeviceSpecificCommand instructs the device to execute one of its custom commands.
+                                A <a href="#">DeviceDefinition</a> may have custom commands
+                                that are only applicable to it.
+                            </p>
+
+
+                            <!-- Request -->
+                            <h3 id="request">Request</h3>
+
+
+                            <div class="assnormalbox">
+                                <div class="table-responsive">
+                                    <div class="bs-example">
+                                        <table class="table table-hover dashtable table table-striped table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <th> Name </th>
+                                                    <th> Description </th>
+                                                    <th> Required </th>
+                                                </tr>
+                                                <tr>
+                                                    <td> AccessKey </td>
+                                                    <td> The AccessKey for your user account. </td>
+                                                    <td> Yes </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> Action </td>
+                                                    <td> DeviceSpecificCommand </td>
+                                                    <td> Yes </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> CommandName </td>
+                                                    <td> The name of the device specific command. </td>
+                                                    <td> Yes </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> LogicalDeviceId </td>
+                                                    <td> The logical device identifier from <a href="#">AddLogicalDevice</a>. </td>
+                                                    <td> Yes </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clear"></div>
+
+
+                            <div class="alert alert-info">
+                                <strong>More Info!</strong> Complete documentation on an individual DeviceSpecificCommand
+                                can be found on its <a href="/documentation/Enclosures">Devices</a> page.
+                            </div>
+
+                            <!-- Response -->
+                            <h3 id="response"> Response</h3>
+
+                            <div class="assnormalbox">
+                                <div class="table-responsive">
+                                    <div class="bs-example">
+                                        <table class="table table-hover dashtable table table-striped table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    <th> Code </th>
+                                                    <th> Name </th>
+                                                    <th> Description </th>
+                                                </tr>
+                                                <tr>
+                                                    <td> 200 </td>
+                                                    <td> Success </td>
+                                                    <td> Indicates that the request is successful. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 400 </td>
+                                                    <td> InvalidParameter </td>
+                                                    <td> Indicates that a request parameter does not comply with the associated constraints. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 401 </td>
+                                                    <td> Unauthorized </td>
+                                                    <td> Indicates that the user has been denied access to the requested resource. </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> 500 </td>
+                                                    <td> InternalError </td>
+                                                    <td> Indicates an internal service error. </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pull-right">
+                                <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+                            </div>
+
+
+                            <div class="tab-img"><img src="images/CommandResponse.png" alt=""></div>
+
+
+                            <!-- Example -->
+                            <h3 id="example">Example</h3>
+
+                            <p>Request</p>
+                            <pre>https://solsticedata.tersosolutions.com/v1.0/application/?
+    AccessKey=MyAccessKey
+    &amp;Action=DeviceSpecificCommand
+    &amp;CommandName=(CommandName)
+    &amp;LogicalDeviceId=MyLogicalDeviceId
+    &amp;Parameters=(CommandParameters)</pre>
+
+                            <p>Response</p>
+                            <pre>    &lt;Solstice Data™ xmlns="http://solsticedata.TersoSolutions.com/v1.0/CommandResponse"&gt;
+        &lt;Header/&gt;
+        &lt;CommandResponse CommandId="f8591bf3-572f-470a-87ba-dc8c7a149531" /&gt;
+    &lt;/Solstice Data™&gt;</pre>
+
+
+
+                        </div>
+                    </div>
+                </div><!-- tab-content -->
+            </div><!-- col -->
+        </div><!-- row -->
+    </div>
+</section>
+<!--body area end-->
+<div class="clear"></div>

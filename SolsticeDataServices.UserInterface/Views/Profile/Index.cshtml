@@ -1,0 +1,168 @@
+﻿@model SolsticeDataServices.DAL.Model.ProfileModel
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.selectpicker1').selectpicker();
+            $('.selectpicker2').selectpicker();
+            $("#selRegion").attr("disabled", "disabled");
+            $("#AccessKey").attr("disabled", "disabled");
+            @*$.ajax({
+                type: "get",
+                url: "/Profile/LinkedAccessKey",
+                dataType: "json",
+                data: { Email: '@User.Identity.Name' },
+                success: function (data) {
+                    $('#LinkedAccessKey').val(data.LinkedAccessKey);
+                    $('#AccessKey').val(data.DeviceAccessKey);
+                }
+            });*@
+
+            jQuery('#selDeviceSerial').change(function () {
+                var DeviceSerial = $('#selDeviceSerial option:selected').val();
+                jQuery.ajax({
+                    type: "get",
+                    url: "/Profile/SetDefault",
+                    dataType: "json",
+                    data: { DeviceSerial: DeviceSerial },
+                    success: function (data) {
+                        jQuery("#selRegion option[value='" + data.Region + "']").attr("selected", "selected");
+                       
+                        $('.selectpicker2').selectpicker('refresh');
+                        jQuery('#AccessKey').val(data.DeviceAccess);
+                       
+
+                    }
+                });
+            })
+
+            jQuery('#btnPassword').click(function () {
+                var newPassword = jQuery('#newPassword').val();
+                var confirmPassword = jQuery('#confirmPassword').val();
+                if (newPassword == confirmPassword) {
+                    jQuery.ajax({
+                        type: "get",
+                        url: "/Profile/ResetPassword",
+                        dataType: "json",
+                        data: { Email: '@User.Identity.Name', Password: newPassword },
+                        success: function (data) {
+                            if (data.IsPasswordReset)
+                                alert('Password successfully changed');
+                            else
+                                alert('Problem resetting password');
+
+                            jQuery('#newPassword').val('');
+                            jQuery('#confirmPassword').val('');
+                        }
+                    });
+                }
+                else {
+                    alert('Password does not match. Please, reenter.');
+                }
+            });
+            jQuery('#btnDefaultDevice').click(function () {
+                var DeviceSerial = jQuery('#selDeviceSerial option:selected').val();
+                var Region = jQuery('#selRegion option:selected').val();
+                var DeviceAccess = jQuery('#AccessKey').val().trim();
+
+                jQuery.ajax({
+                    type: "get",
+                    url: "/Profile/UpdateDefaultDevice",
+                    dataType: "json",
+                    data: { DeviceAccess: DeviceAccess, Email: '@User.Identity.Name', DeviceSerial: DeviceSerial, Region: Region },
+                    success: function (data) {
+                        if (data.IsUpdated)
+                            alert('Default device has successfully changed');
+                        else
+                            alert('Problem changing default device');
+                    }
+                });
+            });
+        });
+    </script>
+
+}
+
+<!--slider area start-->
+<div class="admin-nav-area">
+    <div class="container">
+        <div class="dash-nav">
+            <h3>Profile</h3>
+            <div class="iconarea">
+                <ul>
+                    <li><a href="/Device"><img src="images/navico1.png" alt=""></a></li>
+                    <li><a href="#"><img src="images/navico2.png" alt=""></a></li>
+                    <li><a href="/Simulator"><img src="images/navico3.png" alt=""></a></li>
+                    <li><a href="#"><img src="images/navico4.png" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--slider area end-->
+<!--body area start-->
+<section class="container">
+    <div class="adminbodypan">
+        <div class="profile-form">
+
+            <h3>Change Password</h3>
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <label>New Password</label>
+                    <input id="newPassword" class="simulator-input" type="password" name="" placeholder="New Password" />
+
+                    <label>New Password Again</label>
+                    <input id="confirmPassword" class="simulator-input" type="password" name="" placeholder="New Password Again" />
+
+                    <input id="btnPassword" class="submitbtnpop" type="button" name="" value="Submit" />
+
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="dashbdr"></div>
+
+
+            <h3>Linked Access Key</h3>
+            <div class="row">
+                <div class="col-lg-9">
+                    <label>Link your admin console account to a different Solstice Data Access key. This is useful when you have multiple applications and you want to switch between them.</label>
+
+                    @*<input id="" class="simulator-input" type="text" name="" value="c90f13b7-573c-4f1e-8149-ee8106b0b7e5" placeholder="c90f13b7-573c-4f1e-8149-ee8106b0b7e5" onblur="if(this.value == '') { this.value='c90f13b7-573c-4f1e-8149-ee8106b0b7e5'}" onfocus="if (this.value == 'c90f13b7-573c-4f1e-8149-ee8106b0b7e5') {this.value=''}">*@
+                    @*<input id="simulator-input" class="simulator-input" type="text" name="" />*@
+                    @Html.TextBoxFor(model => model.user.LinkedAccessKey, new { @class = "simulator-input", id = "LinkedAccessKey" })
+                    <input id="" class="submitbtnpop" type="submit" name="" value="Link">
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="dashbdr"></div>
+
+            <h3>Default Device</h3>
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <p>Select a device to use as the default device in the simulator.</p>
+                    <label>Device Serial Number</label>
+                    @Html.DropDownListFor(model => model.defaultDevice.DeviceSerialNumber, new SelectList(ViewBag.Device, "DeviceSerialNumber", "DeviceSerialNumber"), new { @class = "selectpicker1", id = "selDeviceSerial" })
+
+                    <label>Device Access Key</label>
+                    @Html.TextBoxFor(model => model.defaultDevice.DeviceAccessKey, new { @class = "simulator-input", placeholder = "Access Key", id = "AccessKey" })
+
+                    <label>Region</label>
+                    @Html.DropDownListFor(model => model.defaultDevice.RegionId, new SelectList(ViewBag.Region, "RegionId", "RegionName"), new { @class = "selectpicker2", id = "selRegion" })
+
+                    <input id="btnDefaultDevice" class="submitbtnpop" type="submit" name="" value="Update" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--body area end-->
+<div class="clear"></div>
+

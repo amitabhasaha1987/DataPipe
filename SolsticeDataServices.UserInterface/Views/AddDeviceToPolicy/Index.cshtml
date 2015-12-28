@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "AddDeviceToPolicy";
+    Layout = "~/Views/Shared/_Documentation.cshtml";
+}
+
+<h2>AddDeviceToPolicy</h2>
+
+<ul class="nav nav-pills">
+    <li><a href="#description">Description</a> </li>
+    <li><a href="#request">Request</a></li>
+    <li><a href="#response">Response</a></li>
+    <li><a href="#example">Example</a></li>
+</ul>
+
+<!-- Description -->
+<h3 id="description">Description</h3>
+<p align="justify">
+    AddDeviceToPolicy adds a device to a policy and will monitor the device's configuration values for any descrepencies from the policy. 
+    solstice® will automatically schedule a <a href="/GetConfigValuesCommand">GetConfigValuesCommand</a> and compare the results with the policy and overridden device parameters. 
+    If solstice® determines that there is a variance then a LogEntryEvent with a type of PolicyError will be published. 
+</p>
+
+<!-- Request -->
+<h3 id="request">Request</h3>
+
+<div class="assnormalbox">
+    <div class="table-responsive">
+        <div class="bs-example">
+            <table class="table table-hover dashtable table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th> Name </th>
+                        <th> Description </th>
+                        <th> Required </th>
+                    </tr>
+                    <tr>
+                        <td> AccessKey </td>
+                        <td> The AccessKey for your user account. </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> Action </td>
+                        <td> AddDeviceToPolicy </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> LogicalDeviceId </td>
+                        <td> The logical device identifier from <a href="/AddLogicalDevice">AddLogicalDevice</a>. </td>
+                        <td> Yes </td>
+                    </tr>
+                    <tr>
+                        <td> PolicyId  </td>
+                        <td> The unique identifier for the policy. </td>
+                        <td> Yes </td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-info">
+    <strong>More Info!</strong> You can override parameter values defined in the policy for the device by adding them to the querystring. 
+    For example if you need to specify internet connection settings for a device you can add IP=xxx.xxx.xxx.xxx. 
+</div>
+
+<!-- Response -->
+<h3 id="response"> Response</h3>
+
+<div class="assnormalbox">
+    <div class="table-responsive">
+        <div class="bs-example">
+            <table class="table table-hover dashtable table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th> Code </th>
+                        <th> Name </th>
+                        <th> Description </th>
+                    </tr>
+                    <tr>
+                        <td> 200 </td>
+                        <td> Success </td>
+                        <td> Indicates that the request is successful. </td>
+                    </tr>
+                    <tr>
+                        <td> 400 </td>
+                        <td> InvalidParameter </td>
+                        <td> Indicates that a request parameter does not comply with the associated constraints. </td>
+                    </tr>
+                    <tr>
+                        <td> 401 </td>
+                        <td> Unauthorized </td>
+                        <td> Indicates that the user has been denied access to the requested resource. </td>
+                    </tr>
+                    <tr>
+                        <td> 500 </td>
+                        <td> InternalError </td>
+                        <td> Indicates an internal service error. </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<!-- Image -->
+<div class="pull-right">
+    <button class="btn btn-default btn-mini" type="button"><i class="glyphicon glyphicon-download"></i> Download</button>
+</div>
+
+
+<div class="tab-img"><img src="images/AddDeviceToPolicy.png" alt=""></div>
+
+ <!-- Example -->
+<h3 id="example">Example</h3>
+
+<p>Request</p>
+<pre>https://solstice.tersosolutions.com/v1.5/application/?
+    AccessKey=MyAccessKey
+    &amp;Action=AddDeviceToPolicy
+    &amp;LogicalDeviceId=MyLogicalDeviceId
+    &amp;PolicyId=2ee99079-275c-4a1e-b85a-e600cd7e8fe1
+    &amp;DNS=192.168.92.1
+    &amp;Gateway=192.168.92.100
+    &amp;IP=192.168.92.101
+    &amp;Subnet=255.255.255.0</pre>
+
+<p>Response</p>
+<pre>    &lt;Solstice xmlns="http://solstice.TersoSolutions.com/v1.5/ConfigureResponse"&gt;
+        &lt;Header/&gt;
+        &lt;ConfigureResponse Id="a73051d0-5cac-31c0-9718-0bad4e867aee" /&gt;
+    &lt;/Solstice&gt;</pre>
+
